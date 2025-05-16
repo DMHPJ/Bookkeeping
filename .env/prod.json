@@ -1,0 +1,4 @@
+{
+  "env": "prod",
+  "apiUrl": "your_api_url"
+}
