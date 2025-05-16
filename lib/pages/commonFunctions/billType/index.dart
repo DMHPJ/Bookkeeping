@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billTypeListItem/index.dart';
+import 'package:flutter_application_1/components/bottomButton/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/model.dart';
+import 'package:flutter_application_1/route/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,6 +22,10 @@ class _BillTypeState extends State<BillType> {
   void initState() {
     super.initState();
     billTypeModel.getAllBillType();
+  }
+
+  void toAddBillMainType() {
+    Navigator.pushNamed(context, RoutePath.addMainBillType);
   }
 
   @override
@@ -42,18 +48,29 @@ class _BillTypeState extends State<BillType> {
           surfaceTintColor: Color(0xffAFC8DA),
           backgroundColor: Color(0xffAFC8DA),
         ),
-        body: SingleChildScrollView(
-          child: Consumer<BillTypeModel>(
-            builder:
-                (context, value, child) => ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: value.allBillTypeData?.length ?? 0,
-                  itemBuilder:
-                      (context, index) =>
-                          BillTypeListItem(data: value.allBillTypeData?[index]),
-                ),
-          ),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Consumer<BillTypeModel>(
+                    builder:
+                        (context, value, child) => ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: value.allBillTypeData?.length ?? 0,
+                          itemBuilder:
+                              (context, index) => BillTypeListItem(
+                                data: value.allBillTypeData?[index],
+                              ),
+                        ),
+                  ),
+                  SizedBox(height: 170.h),
+                ],
+              ),
+            ),
+            BottomButton(buttonText: "添加主类", onPressed: toAddBillMainType),
+          ],
         ),
       ),
     );

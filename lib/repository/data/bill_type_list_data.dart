@@ -23,13 +23,13 @@ class BillTypeListData {
 
 class BillTypeItemData {
   BillTypeItemData({
-    this.id,
-    this.parentId,
-    this.icon,
-    this.isIncome,
-    this.name,
-    this.createTime,
-    this.children
+    this.id = '',
+    this.parentId = '',
+    this.icon = '',
+    this.isIncome = 0,
+    this.name = '',
+    this.createTime = '',
+    this.children = const [],
   });
 
   BillTypeItemData.fromJson(dynamic json) {
@@ -40,7 +40,7 @@ class BillTypeItemData {
     name = json['name'];
     createTime = json['createTime'];
 
-    if(json["children"] != null){
+    if (json["children"] != null) {
       children = [];
       json["children"].forEach((v) {
         children?.add(BillTypeItemData.fromJson(v));
@@ -68,5 +68,10 @@ class BillTypeItemData {
       map['children'] = children?.map((v) => v.toJson()).toList();
     }
     return map;
+  }
+
+  @override
+  String toString() {
+    return 'BillTypeItemData{id: $id, parentId: $parentId, icon: $icon, isIncome: $isIncome, name: $name, createTime: $createTime, children: $children}';
   }
 }

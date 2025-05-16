@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/bill/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
+import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/editMainBillType.dart';
 import 'package:flutter_application_1/pages/home/index.dart';
 import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
@@ -11,14 +12,16 @@ class Routes {
     switch (settings.name) {
       case RoutePath.home:
         return pageRoute(HomePage());
-        case RoutePath.bill:
+      case RoutePath.bill:
         return pageRoute(Bill());
-        case RoutePath.report:
+      case RoutePath.report:
         return pageRoute(Report());
-        case RoutePath.myPage:
+      case RoutePath.myPage:
         return pageRoute(MyPage());
       case RoutePath.billType:
         return pageRoute(BillType());
+      case RoutePath.addMainBillType:
+        return pageRoute(EditMainBillType());
     }
     return pageRoute(
       Scaffold(body: SafeArea(child: Center(child: Text('404')))),
@@ -47,4 +50,7 @@ class RoutePath {
 
   // 常用功能 - 收支类型
   static const String billType = '/commonFunctions/billType';
+  // 常用功能 - 收支类型 - 添加主类
+  static const String addMainBillType =
+      '/commonFunctions/billType/subPage/addMainBillType';
 }

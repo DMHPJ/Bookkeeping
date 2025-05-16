@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(35.r),
+                  margin: EdgeInsets.all(35.r),
                   child: Column(
                     children: [
                       if (_currentIndex == 0) ...[
