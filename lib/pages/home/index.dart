@@ -67,110 +67,120 @@ class _HomePageState extends State<HomePage> {
                           },
                       itemBuilder: (context, index) {
                         if (index == 0) {
-                          return Container(
-                            padding: EdgeInsets.only(
-                              top: 80.h,
-                              bottom: 45.h,
-                              left: 35.h,
-                              right: 35.h,
-                            ),
-                            color: Color(0xffAFC8DA),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "本月支出（元）",
-                                  style: TextStyle(fontSize: 34.r),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyExpense ?? "0.0"))}",
-                                      style: TextStyle(
-                                        fontSize: 90.r,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Icon(Icons.remove_red_eye)
-                                  ],
-                                ),
-                                SizedBox(height: 20.h),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        "本月收入 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyIncome ?? "0.0"))}",
+                          return Consumer<HomePageModel>(
+                            builder:
+                                (context, value, child) => Container(
+                                  padding: EdgeInsets.only(
+                                    top: 80.h,
+                                    bottom: 45.h,
+                                    left: 35.h,
+                                    right: 35.h,
+                                  ),
+                                  color: Color(0xffAFC8DA),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "本月支出（元）",
                                         style: TextStyle(fontSize: 34.r),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        "月结余 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyBalance ?? "0.0"))}",
-                                        style: TextStyle(fontSize: 34.r),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyExpense ?? "0.0"))}",
+                                            style: TextStyle(
+                                              fontSize: 90.r,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Icon(Icons.remove_red_eye),
+                                        ],
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(height: 20.h),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              "本月收入 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyIncome ?? "0.0"))}",
+                                              style: TextStyle(fontSize: 34.r),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              "月结余 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyBalance ?? "0.0"))}",
+                                              style: TextStyle(fontSize: 34.r),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
                           );
                         } else {
-                          return Container(
-                            padding: EdgeInsets.only(
-                              top: 80.h,
-                              bottom: 45.h,
-                              left: 35.h,
-                              right: 35.h,
-                            ),
-                            color: Color(0xffAFC8DA),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "净资产（元）",
-                                  style: TextStyle(fontSize: 34.r),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.netAsset ?? "0.0"))}",
-                                      style: TextStyle(
-                                        fontSize: 90.r,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Icon(Icons.remove_red_eye)
-                                  ],
-                                ),
-                                SizedBox(height: 20.h),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        "总资产 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalAsset ?? "0.0"))}",
+                          return Consumer<HomePageModel>(
+                            builder:
+                                (context, value, child) => Container(
+                                  padding: EdgeInsets.only(
+                                    top: 80.h,
+                                    bottom: 45.h,
+                                    left: 35.h,
+                                    right: 35.h,
+                                  ),
+                                  color: Color(0xffAFC8DA),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "净资产（元）",
                                         style: TextStyle(fontSize: 34.r),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        "总负债 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalLiability ?? "0.0"))}",
-                                        style: TextStyle(fontSize: 34.r),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.netAsset ?? "0.0"))}",
+                                            style: TextStyle(
+                                              fontSize: 90.r,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Icon(Icons.remove_red_eye),
+                                        ],
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(height: 20.h),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              "总资产 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalAsset ?? "0.0"))}",
+                                              style: TextStyle(fontSize: 34.r),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              "总负债 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalLiability ?? "0.0"))}",
+                                              style: TextStyle(fontSize: 34.r),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
                           );
                         }
                       },
@@ -237,10 +247,18 @@ class _HomePageState extends State<HomePage> {
                               (context, value, child) => ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                itemCount: value.billMainInfoData?.billChrList?.length ?? 0,
+                                itemCount:
+                                    value
+                                        .billMainInfoData
+                                        ?.billChrList
+                                        ?.length ??
+                                    0,
                                 itemBuilder:
                                     (context, index) => BillItem(
-                                      data: value.billMainInfoData?.billChrList?[index],
+                                      data:
+                                          value
+                                              .billMainInfoData
+                                              ?.billChrList?[index],
                                     ),
                               ),
                         ),
@@ -299,10 +317,18 @@ class _HomePageState extends State<HomePage> {
                               (context, value, child) => ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                itemCount: value.billMainInfoData?.walletList?.length ?? 0,
+                                itemCount:
+                                    value
+                                        .billMainInfoData
+                                        ?.walletList
+                                        ?.length ??
+                                    0,
                                 itemBuilder:
                                     (context, index) => WalletItem(
-                                      data: value.billMainInfoData?.walletList?[index],
+                                      data:
+                                          value
+                                              .billMainInfoData
+                                              ?.walletList?[index],
                                     ),
                               ),
                         ),
