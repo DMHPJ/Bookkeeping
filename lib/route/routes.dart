@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/edi
 import 'package:flutter_application_1/pages/home/index.dart';
 import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
+import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(final RouteSettings settings) {
@@ -21,7 +22,8 @@ class Routes {
       case RoutePath.billType:
         return pageRoute(BillType());
       case RoutePath.addMainBillType:
-        return pageRoute(EditMainBillType());
+        final argument = settings.arguments as BillTypeItemData?;
+        return pageRoute(EditMainBillType(argument: argument));
     }
     return pageRoute(
       Scaffold(body: SafeArea(child: Center(child: Text('404')))),

@@ -28,8 +28,13 @@ class Api {
     BillTypeListData billTypeListData = BillTypeListData.fromJson(response.data);
     return billTypeListData.data;
   }
-  // 增改收支类型
-  Future updateBillType(BillTypeItemData billTypeItemData) async {
+  // 新增收支类型
+  Future<String> addBillType(BillTypeItemData billTypeItemData) async {
+    Response response = await DioInstance.instance().post(path: "/type/add", data: billTypeItemData.toJson());
+    return response.data;
+  }
+  // 修改收支类型
+  Future<String> updateBillType(BillTypeItemData billTypeItemData) async {
     Response response = await DioInstance.instance().post(path: "/type/update", data: billTypeItemData.toJson());
     return response.data;
   }

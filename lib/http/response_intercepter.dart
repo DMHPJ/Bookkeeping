@@ -13,7 +13,7 @@ class ResponseIntercepter extends Interceptor {
           handler.next(
             Response(
               requestOptions: response.requestOptions,
-              data: responseData.data,
+              data: responseData.data ?? responseData.msg,
             ),
           );
         }

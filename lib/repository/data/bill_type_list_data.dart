@@ -23,12 +23,12 @@ class BillTypeListData {
 
 class BillTypeItemData {
   BillTypeItemData({
-    this.id = '',
-    this.parentId = '',
-    this.icon = '',
+    this.id,
+    this.parentId,
+    this.icon,
     this.isIncome = 0,
-    this.name = '',
-    this.createTime = '',
+    this.name,
+    this.createTime,
     this.children = const [],
   });
 

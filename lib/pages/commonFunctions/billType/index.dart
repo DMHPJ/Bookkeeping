@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billTypeListItem/index.dart';
 import 'package:flutter_application_1/components/bottomButton/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/model.dart';
+import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 import 'package:flutter_application_1/route/routes.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,6 +18,7 @@ class BillType extends StatefulWidget {
 }
 
 class _BillTypeState extends State<BillType> {
+  final logger = Logger();
   BillTypeModel billTypeModel = BillTypeModel();
 
   @override
@@ -25,7 +28,12 @@ class _BillTypeState extends State<BillType> {
   }
 
   void toAddBillMainType() {
-    Navigator.pushNamed(context, RoutePath.addMainBillType);
+    final newBillType = BillTypeItemData(isIncome: 1); // 根据实际情况构造
+    Navigator.pushNamed(
+      context,
+      RoutePath.addMainBillType,
+      arguments: newBillType,
+    ).then((value) => billTypeModel.getAllBillType());
   }
 
   @override

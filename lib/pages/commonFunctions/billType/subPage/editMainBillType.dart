@@ -1,8 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottomButton/index.dart';
+import 'package:flutter_application_1/http/base_model.dart';
+import 'package:flutter_application_1/repository/api.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
+import 'package:oktoast/oktoast.dart';
 
 class EditMainBillType extends StatefulWidget {
   final BillTypeItemData? argument;
@@ -22,12 +26,25 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
   @override
   void initState() {
     super.initState();
+    logger.i(widget.argument);
     billTypeForm = widget.argument ?? BillTypeItemData();
   }
 
+  Future toAddUpdateType() async {
+    late String res;
+    if (widget.argument?.id == null) {
+      res = await Api.instance.addBillType(billTypeForm);
+    } else {
+      res = await Api.instance.updateBillType(billTypeForm);
+    }
+    showToast(res);
+    Navigator.pop(context);
+  }
+
   void validForm() {
-    if(_editBillTypeFormKey.currentState!.validate()){
+    if (_editBillTypeFormKey.currentState!.validate()) {
       _editBillTypeFormKey.currentState!.save();
+      toAddUpdateType();
       logger.i(billTypeForm);
     }
   }
@@ -78,6 +95,20 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("是否作为收入类型"),
+                            Switch(
+                              value: billTypeForm.isIncome == 1,
+                              onChanged:
+                                  (value) => setState(() {
+                                    billTypeForm.isIncome = value ? 1 : 0;
+                                  }),
+                            ),
+                          ],
+                        ),
                         Text("建议使用 emoji 😊 开头，图标默认为开头首个字符"),
                         // Text("选择分类图标后名称将自动填充，也可以自行修改分类名称"),
                       ],
@@ -86,7 +117,7 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                 ],
               ),
             ),
-            BottomButton(buttonText: "保存", onPressed: validForm)
+            BottomButton(buttonText: "保存", onPressed: validForm),
           ],
         ),
       ),
