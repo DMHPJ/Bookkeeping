@@ -1,6 +1,7 @@
 // 路由注册
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/bill/index.dart';
+import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/editMainBillType.dart';
 import 'package:flutter_application_1/pages/home/index.dart';
@@ -24,6 +25,8 @@ class Routes {
       case RoutePath.addEditBillType:
         final argument = settings.arguments as BillTypeItemData?;
         return pageRoute(EditMainBillType(argument: argument));
+      case RoutePath.walletType:
+        return pageRoute(WalletType());
     }
     return pageRoute(
       Scaffold(body: SafeArea(child: Center(child: Text('404')))),
@@ -42,17 +45,21 @@ class Routes {
 // 路由树
 class RoutePath {
   // 首页
-  static const String home = '/home';
+  static const String home = '/home/index';
   // 账单
-  static const String bill = '/bill';
+  static const String bill = '/bill/index';
   // 报表
-  static const String report = '/report';
+  static const String report = '/report/index';
   // 我的
-  static const String myPage = '/myPage';
+  static const String myPage = '/myPage/index';
 
   // 常用功能 - 收支类型
-  static const String billType = '/commonFunctions/billType';
+  static const String billType = '/commonFunctions/billType/index';
   // 常用功能 - 收支类型 - 添加主类
   static const String addEditBillType =
       '/commonFunctions/billType/subPage/addEditBillType';
+  // 常用功能 - 资产类型
+  static const String walletType = '/commonFunctions/walletType/index';
+  // 常用功能 - 资产类型 - 增改资金类型账户
+  static const String addEditFund = '/commonFunctions/walletType/subPage/addEditFund';
 }

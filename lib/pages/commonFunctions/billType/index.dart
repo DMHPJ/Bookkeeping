@@ -17,27 +17,36 @@ class BillType extends StatefulWidget {
   }
 }
 
-class _BillTypeState extends State<BillType> {
+class _BillTypeState extends State<BillType>
+    with SingleTickerProviderStateMixin {
   final logger = Logger();
+  late final TabController _tabController = TabController(
+    length: 2,
+    vsync: this,
+  );
   BillTypeModel billTypeModel = BillTypeModel();
 
   @override
   void initState() {
     super.initState();
-    billTypeModel.getAllBillType();
+    billTypeModel.getBillTypeList(0);
   }
 
-  void navigateToAddEdit(BillTypeItemData data){
+  void navigateToAddEdit(BillTypeItemData data) {
     Navigator.pushNamed(
       context,
       RoutePath.addEditBillType,
       arguments: data,
-    ).then((value) => billTypeModel.getAllBillType());
+    ).then((value) => billTypeModel.getBillTypeList(_tabController.index));
   }
 
   void toAddBillMainType() {
-    final newBillType = BillTypeItemData(isIncome: 1);
+    final newBillType = BillTypeItemData(isIncome: _tabController.index);
     navigateToAddEdit(newBillType);
+  }
+
+  void handleTabChange(int index) {
+    billTypeModel.getBillTypeList(_tabController.index);
   }
 
   @override
@@ -47,13 +56,37 @@ class _BillTypeState extends State<BillType> {
       child: Scaffold(
         appBar: AppBar(
           title: Row(
-            children: [
-              Container(child: Text("支出分类")),
-              SizedBox(width: 16.w),
-              Container(child: Text("收入分类")),
-            ],
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
+            children: [
+              TabBar(
+                controller: _tabController,
+                tabs: [Text("支出分类"), Text("收入分类")],
+                isScrollable: true,
+                onTap: (value) => handleTabChange(value),
+                indicator: UnderlineTabIndicator(
+                  borderRadius: BorderRadius.all(Radius.circular(99.r)),
+                  borderSide: BorderSide(
+                    color: Color(0xFF1c1c22), // 指示器颜色
+                    width: 75.h, // 指示器厚度
+                  ),
+                ),
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelStyle: TextStyle(
+                  fontSize: 36.r,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFFECECEC),
+                ),
+                tabAlignment: TabAlignment.center,
+                labelPadding: EdgeInsets.only(
+                  right: 30.w,
+                  left: 30.w,
+                  top: 10.h,
+                  bottom: 10.h,
+                ),
+              ),
+            ],
           ),
           centerTitle: true,
           toolbarHeight: 160.h,

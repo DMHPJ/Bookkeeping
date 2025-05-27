@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billItem/bill_item.dart';
 import 'package:flutter_application_1/components/walletItem/wallet_item.dart';
+import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
+import 'package:flutter_application_1/pages/commonFunctions/walletType/subPage/addEditFund.dart';
 import 'package:flutter_application_1/pages/home/model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 final numberFormat = NumberFormat("##,##0.00", "en_US");
@@ -27,6 +30,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     homePageModel.getBillMainInfo();
+  }
+
+  void toAddWallet() {
+    PersistentNavBarNavigator.pushNewScreen(
+      context,
+      screen: const WalletType(),
+      withNavBar: false,
+    ).then((value) => homePageModel.getBillMainInfo());
   }
 
   @override
@@ -266,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           margin: EdgeInsets.only(bottom: 20.h),
                           child: MaterialButton(
-                            onPressed: () => {},
+                            onPressed: toAddWallet,
                             minWidth: double.infinity,
                             height: 100.h,
                             color: Color(0xffAFC8DA),

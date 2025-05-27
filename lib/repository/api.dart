@@ -3,6 +3,11 @@ import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/repository/data/bill_chr_list_data.dart';
 import 'package:flutter_application_1/repository/data/bill_main_info_data.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
+import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
+
+class Filter {
+  
+}
 
 class Api {
   static Api instance = Api._();
@@ -23,8 +28,9 @@ class Api {
 
 
   // 收支类型
-  Future<List<BillTypeItemData>?> getAllBillTypeList() async {
-    Response response = await DioInstance.instance().post(path: "/type/all");
+  Future<List<BillTypeItemData>?> getBillTypeList(int isIncome) async {
+    final data = BillTypeItemData(isIncome: isIncome);
+    Response response = await DioInstance.instance().post(path: "/type/list", data: data.toJson());
     BillTypeListData billTypeListData = BillTypeListData.fromJson(response.data);
     return billTypeListData.data;
   }
@@ -37,5 +43,13 @@ class Api {
   Future<String> updateBillType(BillTypeItemData billTypeItemData) async {
     Response response = await DioInstance.instance().post(path: "/type/update", data: billTypeItemData.toJson());
     return response.data;
+  }
+
+  // 资产类型
+  Future<List<WalletTypeItemData>?> getWalletTypeList(int assetType) async {
+    final data = WalletTypeItemData(assetType: assetType);
+    Response response = await DioInstance.instance().post(path: "/walletType/list", data: data.toJson());
+    WalletTypeListData walletTypeListData = WalletTypeListData.fromJson(response.data);
+    return walletTypeListData.data;
   }
 }
