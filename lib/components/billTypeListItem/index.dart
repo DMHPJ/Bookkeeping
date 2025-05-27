@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 
 class BillTypeListItem extends StatefulWidget {
-  final BillTypeItemData? data;
-  const BillTypeListItem({super.key, required this.data});
+  final BillTypeItemData data;
+  final Function(BillTypeItemData data) navigateToAddEdit;
+  const BillTypeListItem({super.key, required this.data, required this.navigateToAddEdit});
 
   @override
   State<StatefulWidget> createState() {
@@ -16,16 +17,21 @@ class BillTypeListItem extends StatefulWidget {
 class _BillTypeListItemState extends State<BillTypeListItem> {
   var logger = Logger();
   bool _isExpanded = false;
+  late BillTypeItemData _baseData;
 
   void toSelectedItem(int index) {
-    if((index + 1) <= (widget.data?.children?.length ?? 0)){
-      final itemId = widget.data?.children?[index].id ?? "0";
-      logger.i("itemId "+itemId);
+    final isEdit = (index + 1) <= (widget.data.children?.length ?? 0);
+    widget.navigateToAddEdit(isEdit ? (widget.data.children![index]) : _baseData);
+  }
 
-    } else {
-      logger.i("info");
-    }
-    
+  @override
+  void initState() {
+    super.initState();
+    _baseData = BillTypeItemData(
+      parentId: widget.data.id,
+      parentName: widget.data.name,
+      parentIcon: widget.data.icon,
+    );
   }
 
   @override
@@ -66,7 +72,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                   ),
                   child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text(widget.data?.icon ?? ""),
+                    child: Text(widget.data.icon ?? ""),
                   ),
                 ),
                 Expanded(
@@ -79,7 +85,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.data?.name ?? "",
+                            widget.data.name ?? "",
                             style: TextStyle(
                               fontSize: 40.r,
                               fontWeight: FontWeight.w600,
@@ -121,7 +127,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                   GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: (widget.data?.children?.length ?? 0) + 1,
+                    itemCount: (widget.data.children?.length ?? 0) + 1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 5, // 列数
                       mainAxisSpacing: 10.h, // 主轴间距
@@ -158,9 +164,9 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                                 fit: BoxFit.contain,
                                 child:
                                     (index + 1) <=
-                                            (widget.data?.children?.length ?? 0)
+                                            (widget.data.children?.length ?? 0)
                                         ? Text(
-                                          widget.data?.children?[index].icon ??
+                                          widget.data.children?[index].icon ??
                                               "",
                                         )
                                         : Icon(
@@ -170,8 +176,8 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                             ),
                           ),
                           Text(
-                            (index + 1) <= (widget.data?.children?.length ?? 0)
-                                ? (widget.data?.children?[index].name ?? "")
+                            (index + 1) <= (widget.data.children?.length ?? 0)
+                                ? (widget.data.children?[index].name ?? "")
                                 : "添加子分类",
                             style: TextStyle(
                               fontSize: 30.r,

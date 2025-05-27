@@ -21,7 +21,7 @@ class Routes {
         return pageRoute(MyPage());
       case RoutePath.billType:
         return pageRoute(BillType());
-      case RoutePath.addMainBillType:
+      case RoutePath.addEditBillType:
         final argument = settings.arguments as BillTypeItemData?;
         return pageRoute(EditMainBillType(argument: argument));
     }
@@ -53,6 +53,6 @@ class RoutePath {
   // 常用功能 - 收支类型
   static const String billType = '/commonFunctions/billType';
   // 常用功能 - 收支类型 - 添加主类
-  static const String addMainBillType =
-      '/commonFunctions/billType/subPage/addMainBillType';
+  static const String addEditBillType =
+      '/commonFunctions/billType/subPage/addEditBillType';
 }

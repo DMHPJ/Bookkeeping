@@ -27,13 +27,17 @@ class _BillTypeState extends State<BillType> {
     billTypeModel.getAllBillType();
   }
 
-  void toAddBillMainType() {
-    final newBillType = BillTypeItemData(isIncome: 1); // 根据实际情况构造
+  void navigateToAddEdit(BillTypeItemData data){
     Navigator.pushNamed(
       context,
-      RoutePath.addMainBillType,
-      arguments: newBillType,
+      RoutePath.addEditBillType,
+      arguments: data,
     ).then((value) => billTypeModel.getAllBillType());
+  }
+
+  void toAddBillMainType() {
+    final newBillType = BillTypeItemData(isIncome: 1);
+    navigateToAddEdit(newBillType);
   }
 
   @override
@@ -56,28 +60,38 @@ class _BillTypeState extends State<BillType> {
           surfaceTintColor: Color(0xffAFC8DA),
           backgroundColor: Color(0xffAFC8DA),
         ),
-        body: Stack(
+        body: Column(
           children: [
-            SingleChildScrollView(
-              child: Column(
+            Expanded(
+              child: Stack(
                 children: [
-                  Consumer<BillTypeModel>(
-                    builder:
-                        (context, value, child) => ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: value.allBillTypeData?.length ?? 0,
-                          itemBuilder:
-                              (context, index) => BillTypeListItem(
-                                data: value.allBillTypeData?[index],
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Consumer<BillTypeModel>(
+                          builder:
+                              (context, value, child) => ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: value.allBillTypeData?.length ?? 0,
+                                itemBuilder:
+                                    (context, index) => BillTypeListItem(
+                                      data: value.allBillTypeData![index],
+                                      navigateToAddEdit: navigateToAddEdit,
+                                    ),
                               ),
                         ),
+                        SizedBox(height: 170.h),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 170.h),
+                  BottomButton(
+                    buttonText: "添加主类",
+                    onPressed: toAddBillMainType,
+                  ),
                 ],
               ),
             ),
-            BottomButton(buttonText: "添加主类", onPressed: toAddBillMainType),
           ],
         ),
       ),

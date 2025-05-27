@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottomButton/index.dart';
-import 'package:flutter_application_1/http/base_model.dart';
 import 'package:flutter_application_1/repository/api.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,12 +29,7 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
   }
 
   Future toAddUpdateType() async {
-    late String res;
-    if (widget.argument?.id == null) {
-      res = await Api.instance.addBillType(billTypeForm);
-    } else {
-      res = await Api.instance.updateBillType(billTypeForm);
-    }
+    final String res = await Api.instance.updateBillType(billTypeForm);
     showToast(res);
     Navigator.pop(context);
   }
@@ -62,6 +55,39 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  if (billTypeForm.parentId != null) ...[
+                    TextFormField(
+                      readOnly: true,
+                      initialValue: billTypeForm.parentName,
+                      decoration: InputDecoration(
+                        labelText: "一级分类",
+                        filled: true, // 填充背景颜色
+                        fillColor: Colors.grey.shade200, // 设置淡灰色背景
+                        contentPadding: EdgeInsets.only(left: 40.w),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r), // 设置圆角
+                          borderSide: BorderSide.none, // 去掉边框
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        suffixIcon: Container(
+                          margin: EdgeInsets.only(right: 30.w, bottom: 5.h),
+                          padding: EdgeInsets.all(15.r),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(billTypeForm.parentIcon ?? ""),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40.h),
+                  ],
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: "分类名称",
@@ -80,6 +106,14 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(100.r),
                         borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: Container(
+                        margin: EdgeInsets.only(right: 30.w, bottom: 5.h),
+                        padding: EdgeInsets.all(15.r),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(billTypeForm.icon ?? ""),
+                        ),
                       ),
                     ),
                     validator: (value) {
