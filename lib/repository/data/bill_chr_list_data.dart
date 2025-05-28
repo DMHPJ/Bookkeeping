@@ -56,7 +56,7 @@ class BillChrItemData {
   String? money;
   String? categoryId;
   String? categoryName;
-  num? transactionType;
+  int? transactionType;
   String? moneyFrom;
   String? moneyTo;
   String? remark;

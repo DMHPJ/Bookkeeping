@@ -45,7 +45,7 @@ class WalletItemData {
   }
   String? id;
   String? billId;
-  String? walletType;
+  int? walletType;
   String? walletTypeName;
   String? walletName;
   String? walletAmount;

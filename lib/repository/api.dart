@@ -15,13 +15,13 @@ class Api {
   Api._();
 
   Future<List<BillChrItemData>?> getBillChrList() async {
-    Response response = await DioInstance.instance().post(path: "/bill/chrList");
+    Response response = await DioInstance.instance().post(path: "/billChr/list");
     BillChrListData billChrListData = BillChrListData.fromJson(response.data);
     return billChrListData.data;
   }
 
   Future<BillMainInfoData?> getBillMainInfo() async {
-    Response response = await DioInstance.instance().post(path: "/bill");
+    Response response = await DioInstance.instance().post(path: "/bill/info");
     BillMainInfoData billMainInfoData = BillMainInfoData.fromJson(response.data);
     return billMainInfoData;
   }
@@ -34,14 +34,14 @@ class Api {
     BillTypeListData billTypeListData = BillTypeListData.fromJson(response.data);
     return billTypeListData.data;
   }
-  // 新增收支类型
-  Future<String> addBillType(BillTypeItemData billTypeItemData) async {
-    Response response = await DioInstance.instance().post(path: "/type/add", data: billTypeItemData.toJson());
-    return response.data;
-  }
-  // 修改收支类型
+  // // 新增收支类型
+  // Future<String> addBillType(BillTypeItemData billTypeItemData) async {
+  //   Response response = await DioInstance.instance().post(path: "/type/add", data: billTypeItemData.toJson());
+  //   return response.data;
+  // }
+  // 增改收支类型
   Future<String> updateBillType(BillTypeItemData billTypeItemData) async {
-    Response response = await DioInstance.instance().post(path: "/type/update", data: billTypeItemData.toJson());
+    Response response = await DioInstance.instance().post(path: "/type/addUpdate", data: billTypeItemData.toJson());
     return response.data;
   }
 
