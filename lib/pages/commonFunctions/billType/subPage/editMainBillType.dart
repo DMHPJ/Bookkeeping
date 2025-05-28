@@ -77,7 +77,9 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                           borderSide: BorderSide.none,
                         ),
                         suffixIcon: Container(
-                          margin: EdgeInsets.only(right: 30.w, bottom: 5.h),
+                          height: 90.h,
+                          width: 100.w,
+                          margin: EdgeInsets.only(right: 10.w, bottom: 5.h),
                           padding: EdgeInsets.all(15.r),
                           child: FittedBox(
                             fit: BoxFit.contain,
@@ -108,7 +110,9 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                         borderSide: BorderSide.none,
                       ),
                       suffixIcon: Container(
-                        margin: EdgeInsets.only(right: 30.w, bottom: 5.h),
+                        height: 90.h,
+                        width: 100.w,
+                        margin: EdgeInsets.only(right: 10.w, bottom: 5.h),
                         padding: EdgeInsets.all(15.r),
                         child: FittedBox(
                           fit: BoxFit.contain,

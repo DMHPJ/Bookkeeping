@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billItem/bill_item.dart';
 import 'package:flutter_application_1/components/walletItem/wallet_item.dart';
 import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
-import 'package:flutter_application_1/pages/commonFunctions/walletType/subPage/addEditFund.dart';
 import 'package:flutter_application_1/pages/home/model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
