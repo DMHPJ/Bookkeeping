@@ -12,22 +12,22 @@ class BillItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
-      padding: EdgeInsets.all(20.r),
+      height: 90.h,
+      margin: EdgeInsets.only(top: 8.h),
+      padding: EdgeInsets.only(top: 12.h, bottom: 12.h, left: 8.w, right: 8.w),
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1, color: Colors.grey.shade300),
-        ),
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Row(
         children: [
           Container(
-            width: 160.w,
-            margin: EdgeInsets.only(right: 30.w),
-            padding: EdgeInsets.all(20.r),
+            width: 66.w,
+            margin: EdgeInsets.only(right: 12.w),
+            padding: EdgeInsets.all(12.r),
             decoration: BoxDecoration(
               color: const Color(0xFFFFEBE6),
-              borderRadius: BorderRadius.all(Radius.circular(50.r)),
+              borderRadius: BorderRadius.all(Radius.circular(6.r)),
             ),
             child: FittedBox(
               fit: BoxFit.contain,
@@ -35,66 +35,53 @@ class BillItem extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       data?.categoryName ?? "",
                       style: TextStyle(
-                        fontSize: 40.r,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 16.r,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    if (data?.remark != null) ...[
-                      Text(
-                        data?.remark ?? "",
-                        style: TextStyle(fontSize: 34.r),
+                    Text(
+                      data?.money != null
+                          ? "￥${numberFormat.format(double.parse(data?.money ?? "0"))}"
+                          : "",
+                      style: TextStyle(
+                        fontSize: 16.r,
+                        fontWeight: FontWeight.w600,
+                        color:
+                            data?.transactionType == 1
+                                ? Colors.deepOrange.shade700
+                                : (data?.transactionType == 2
+                                    ? Colors.green.shade700
+                                    : Colors.black87),
                       ),
-                    ],
+                    ),
                   ],
                 ),
-                Container(
-                  constraints: BoxConstraints(maxWidth: 420.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        data?.money != null
-                            ? "￥${numberFormat.format(double.parse(data?.money ?? "0"))}"
-                            : "",
-                        style: TextStyle(
-                          fontSize: 40.r,
-                          fontWeight: FontWeight.w600,
-                          color:
-                              data?.transactionType == 1
-                                  ? Colors.deepOrange.shade700
-                                  : (data?.transactionType == 2
-                                      ? Colors.green.shade700
-                                      : Colors.black87),
-                        ),
-                      ),
-                      if (data?.moneyTo != null) ...[
-                        Text(
-                          "${data?.moneyFrom} -> ${data?.moneyTo}",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 30.r),
-                        ),
-                      ] else ...[
-                        Text(
-                          data?.moneyFrom ?? "",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 30.r),
-                        ),
-                      ],
-                    ],
+                SizedBox(height: 3.h),
+                if (data?.moneyTo != null) ...[
+                  Text(
+                    "${data?.moneyFrom} -> ${data?.moneyTo}",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 12.r),
                   ),
-                ),
+                ] else ...[
+                  Text(
+                    data?.moneyFrom ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 12.r),
+                  ),
+                ],
+                SizedBox(height: 3.h),
+                Text(data?.remark ?? "无备注", style: TextStyle(fontSize: 12.r)),
               ],
             ),
           ),

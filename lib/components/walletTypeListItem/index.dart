@@ -47,7 +47,7 @@ class _WalletTypeListItemState extends State<WalletTypeListItem> {
                   ),
                   child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text(widget.data.name ?? ""),
+                    child: Text(widget.data.icon ?? ""),
                   ),
                 ),
                 Expanded(

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OKToast(
       child: ScreenUtilInit(
-        designSize: Size(1080, 2376),
+        designSize: Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
         builder:

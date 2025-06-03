@@ -44,12 +44,12 @@ class _HomePageState extends State<HomePage> {
     return ChangeNotifierProvider<HomePageModel>(
       create: (context) => homePageModel,
       child: Scaffold(
-        backgroundColor: Color(0xffFEFFFF),
+        backgroundColor: Color(0xffF9F9F9),
         appBar: AppBar(
           title: Center(child: Text("首页")),
-          toolbarHeight: 160.h,
-          surfaceTintColor: Color(0xffAFC8DA),
-          backgroundColor: Color(0xffAFC8DA),
+          toolbarHeight: 42.h,
+          surfaceTintColor: Color(0xFFABC3FF),
+          backgroundColor: Color(0xFFABC3FF),
         ),
         body: SafeArea(
           top: false,
@@ -58,12 +58,12 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: 500.h,
-                  width: 1080.w,
+                  height: 160.h,
+                  width: 375.w,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(50.r),
-                      bottomRight: Radius.circular(50.r),
+                      bottomLeft: Radius.circular(20.r),
+                      bottomRight: Radius.circular(20.r),
                     ),
                     child: Swiper(
                       loop: false,
@@ -81,20 +81,20 @@ class _HomePageState extends State<HomePage> {
                             builder:
                                 (context, value, child) => Container(
                                   padding: EdgeInsets.only(
-                                    top: 80.h,
-                                    bottom: 45.h,
-                                    left: 35.h,
-                                    right: 35.h,
+                                    top: 8.h,
+                                    left: 16.w,
+                                    right: 16.w,
                                   ),
-                                  color: Color(0xffAFC8DA),
+                                  color: Color(0xFFABC3FF),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "本月支出（元）",
-                                        style: TextStyle(fontSize: 34.r),
+                                        style: TextStyle(fontSize: 14.r),
                                       ),
+                                      SizedBox(height: 6.h),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -104,28 +104,74 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyExpense ?? "0.0"))}",
                                             style: TextStyle(
-                                              fontSize: 90.r,
+                                              fontSize: 32.r,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Icon(Icons.remove_red_eye),
                                         ],
                                       ),
-                                      SizedBox(height: 20.h),
+                                      SizedBox(height: 12.h),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              "本月收入 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyIncome ?? "0.0"))}",
-                                              style: TextStyle(fontSize: 34.r),
+                                            child: Row(
+                                              textBaseline: TextBaseline.alphabetic,
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              children: [
+                                                Text(
+                                                  "本月收入",
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 4.w,),
+                                                Text(
+                                                  numberFormat.format(
+                                                    double.parse(
+                                                      homePageModel
+                                                              .billMainInfoData
+                                                              ?.monthlyIncome ??
+                                                          "0.0",
+                                                    ),
+                                                  ),
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                           Expanded(
-                                            child: Text(
-                                              "月结余 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.monthlyBalance ?? "0.0"))}",
-                                              style: TextStyle(fontSize: 34.r),
+                                            child: Row(
+                                              textBaseline: TextBaseline.alphabetic,
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              children: [
+                                                Text(
+                                                  "月结余",
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 4.w,),
+                                                Text(
+                                                  numberFormat.format(
+                                                    double.parse(
+                                                      homePageModel
+                                                              .billMainInfoData
+                                                              ?.monthlyBalance ??
+                                                          "0.0",
+                                                    ),
+                                                  ),
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
@@ -139,20 +185,20 @@ class _HomePageState extends State<HomePage> {
                             builder:
                                 (context, value, child) => Container(
                                   padding: EdgeInsets.only(
-                                    top: 80.h,
-                                    bottom: 45.h,
-                                    left: 35.h,
-                                    right: 35.h,
+                                    top: 8.h,
+                                    left: 16.w,
+                                    right: 16.w,
                                   ),
-                                  color: Color(0xffAFC8DA),
+                                  color: Color(0xFFABC3FF),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "净资产（元）",
-                                        style: TextStyle(fontSize: 34.r),
+                                        style: TextStyle(fontSize: 14.r),
                                       ),
+                                      SizedBox(height: 6.h),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -162,29 +208,75 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             "￥${numberFormat.format(double.parse(homePageModel.billMainInfoData?.netAsset ?? "0.0"))}",
                                             style: TextStyle(
-                                              fontSize: 90.r,
+                                              fontSize: 32.r,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Icon(Icons.remove_red_eye),
                                         ],
                                       ),
-                                      SizedBox(height: 20.h),
+                                      SizedBox(height: 12.h),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              "总资产 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalAsset ?? "0.0"))}",
-                                              style: TextStyle(fontSize: 34.r),
-                                            ),
+                                            child: Row(
+                                              textBaseline: TextBaseline.alphabetic,
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              children: [
+                                                Text(
+                                                  "总资产",
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 4.w,),
+                                                Text(
+                                                  numberFormat.format(
+                                                    double.parse(
+                                                      homePageModel
+                                                              .billMainInfoData
+                                                              ?.totalAsset ??
+                                                          "0.0",
+                                                    ),
+                                                  ),
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
                                           ),
                                           Expanded(
-                                            child: Text(
-                                              "总负债 ${numberFormat.format(double.parse(homePageModel.billMainInfoData?.totalLiability ?? "0.0"))}",
-                                              style: TextStyle(fontSize: 34.r),
-                                            ),
+                                            child: Row(
+                                              textBaseline: TextBaseline.alphabetic,
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              children: [
+                                                Text(
+                                                  "总负债",
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 4.w,),
+                                                Text(
+                                                  numberFormat.format(
+                                                    double.parse(
+                                                      homePageModel
+                                                              .billMainInfoData
+                                                              ?.totalLiability ??
+                                                          "0.0",
+                                                    ),
+                                                  ),
+                                                  style: TextStyle(
+                                                    fontSize: 14.r,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
                                           ),
                                         ],
                                       ),
@@ -199,25 +291,25 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(35.r),
+                  margin: EdgeInsets.all(16.r),
                   child: Column(
                     children: [
                       if (_currentIndex == 0) ...[
                         Container(
-                          margin: EdgeInsets.only(bottom: 20.h),
+                          margin: EdgeInsets.only(bottom: 16.h),
                           child: MaterialButton(
                             onPressed: () => {},
                             minWidth: double.infinity,
-                            height: 100.h,
-                            color: Color(0xffAFC8DA),
+                            height: 36.h,
+                            color: Color(0xFFABC3FF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30.r),
+                                Radius.circular(32.r),
                               ),
                             ),
                             child: Text(
                               "记一笔",
-                              style: TextStyle(fontSize: 40.r),
+                              style: TextStyle(fontSize: 16.r, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -229,13 +321,14 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 "近3日账单",
                                 style: TextStyle(
-                                  fontSize: 40.r,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.r,
+                                  color: Color(0xff333333),
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               MaterialButton(
                                 onPressed: () => {},
-                                color: Color(0xffAFC8DA),
+                                color: Color(0xFFABC3FF),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(30.r),
@@ -245,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                   "按时间",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 35.r,
+                                    fontSize: 14.r,
                                   ),
                                 ),
                               ),
@@ -274,20 +367,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ] else ...[
                         Container(
-                          margin: EdgeInsets.only(bottom: 20.h),
+                          margin: EdgeInsets.only(bottom: 16.h),
                           child: MaterialButton(
                             onPressed: toAddWallet,
                             minWidth: double.infinity,
-                            height: 100.h,
-                            color: Color(0xffAFC8DA),
+                            height: 36.h,
+                            color: Color(0xFFABC3FF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30.r),
+                                Radius.circular(32.r),
                               ),
                             ),
                             child: Text(
                               "添加资产",
-                              style: TextStyle(fontSize: 40.r),
+                              style: TextStyle(fontSize: 16.r, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -299,23 +392,23 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 "资产",
                                 style: TextStyle(
-                                  fontSize: 40.r,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.r,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               MaterialButton(
                                 onPressed: () => {},
-                                color: Color(0xffAFC8DA),
+                                color: Color(0xFFABC3FF),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
-                                    Radius.circular(30.r),
+                                    Radius.circular(32.r),
                                   ),
                                 ),
                                 child: Text(
                                   "占位",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 35.r,
+                                    fontSize: 14.r,
                                   ),
                                 ),
                               ),

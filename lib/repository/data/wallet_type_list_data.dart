@@ -33,12 +33,14 @@ class WalletTypeItemData {
   WalletTypeItemData.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
+    icon = json['icon'];
     type = json['type'];
     assetType = json['assetType'];
     isLiabilities = json['isLiabilities'];
   }
   String? id;
   String? name;
+  String? icon;
   int? type;
   int? assetType;
   int? isLiabilities;
@@ -47,6 +49,7 @@ class WalletTypeItemData {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['name'] = name;
+    map['icon'] = icon;
     map['type'] = type;
     map['assetType'] = assetType;
     map['isLiabilities'] = isLiabilities;
@@ -55,6 +58,6 @@ class WalletTypeItemData {
 
   @override
   String toString() {
-    return 'WalletTypeItemData{id: $id, name: $name, type: $type, assetType: $assetType, isLiabilities: $isLiabilities}';
+    return 'WalletTypeItemData{id: $id, name: $name, icon: $icon, type: $type, assetType: $assetType, isLiabilities: $isLiabilities}';
   }
 }

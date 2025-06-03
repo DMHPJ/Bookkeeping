@@ -12,22 +12,22 @@ class WalletItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.h,
-      padding: EdgeInsets.all(20.r),
+      height: 70.h,
+      margin: EdgeInsets.only(top: 8.h),
+      padding: EdgeInsets.only(top: 12.h, bottom: 12.h, left: 8.w, right: 8.w),
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1, color: Colors.grey.shade300),
-        ),
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Row(
         children: [
           Container(
-            width: 110.w,
-            margin: EdgeInsets.only(right: 30.w),
-            padding: EdgeInsets.all(20.r),
+            width: 46.w,
+            margin: EdgeInsets.only(right: 8.w),
+            padding: EdgeInsets.all(12.r),
             decoration: BoxDecoration(
               color: const Color(0xFFFFEBE6),
-              borderRadius: BorderRadius.all(Radius.circular(150.r)),
+              borderRadius: BorderRadius.all(Radius.circular(6.r)),
             ),
             child: FittedBox(fit: BoxFit.contain, child: Text("占")),
           ),
@@ -43,18 +43,18 @@ class WalletItem extends StatelessWidget {
                     Text(
                       data?.walletName ?? "",
                       style: TextStyle(
-                        fontSize: 40.r,
+                        fontSize: 14.r,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
                       data?.walletTypeName ?? "",
-                      style: TextStyle(fontSize: 34.r),
+                      style: TextStyle(fontSize: 14.r),
                     ),
                   ],
                 ),
                 Container(
-                  constraints: BoxConstraints(maxWidth: 420.w),
+                  constraints: BoxConstraints(maxWidth: 220.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -62,7 +62,7 @@ class WalletItem extends StatelessWidget {
                       Text(
                         "￥${numberFormat.format(double.parse(data?.walletAmount ?? "0"))}",
                         style: TextStyle(
-                          fontSize: 40.r,
+                          fontSize: 14.r,
                           fontWeight: FontWeight.w600,
                           color: Colors.black87,
                         ),

@@ -53,30 +53,30 @@ class _MyTabBarState extends State<MyTabBar> {
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.home_outlined),
       title: "主页",
-      textStyle: TextStyle(fontSize: 36.r),
-      activeColorPrimary: Color(0xff004097),
-      inactiveColorPrimary: Color(0xff3b3c50),
+      textStyle: TextStyle(fontSize: 12.r),
+      activeColorPrimary: Color(0xFF2965FF),
+      inactiveColorPrimary: Color(0xFF999999),
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.text_snippet_outlined),
       title: "账单",
-      textStyle: TextStyle(fontSize: 36.r),
-      activeColorPrimary: Color(0xff004097),
-      inactiveColorPrimary: Color(0xff3b3c50),
+      textStyle: TextStyle(fontSize: 12.r),
+      activeColorPrimary: Color(0xFF2965FF),
+      inactiveColorPrimary: Color(0xFF999999),
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.pie_chart_outline),
       title: "报表",
-      textStyle: TextStyle(fontSize: 36.r),
-      activeColorPrimary: Color(0xff004097),
-      inactiveColorPrimary: Color(0xff3b3c50),
+      textStyle: TextStyle(fontSize: 12.r),
+      activeColorPrimary: Color(0xFF2965FF),
+      inactiveColorPrimary: Color(0xFF999999),
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.person),
       title: "我的",
-      textStyle: TextStyle(fontSize: 36.r),
-      activeColorPrimary: Color(0xff004097),
-      inactiveColorPrimary: Color(0xff3b3c50),
+      textStyle: TextStyle(fontSize: 12.r),
+      activeColorPrimary: Color(0xFF2965FF),
+      inactiveColorPrimary: Color(0xFF999999),
     ),
   ];
 
@@ -106,7 +106,7 @@ class _MyTabBarState extends State<MyTabBar> {
         hideNavBarOnScroll: true,
         scrollControllers: _scrollControllers,
       ),
-      padding: EdgeInsets.only(top: 8, bottom: 20.h),
+      padding: EdgeInsets.only(top: 6.h, bottom: 6.h),
       
       // 悬浮球
       // floatingActionButton: IconButton(
@@ -141,7 +141,7 @@ class _MyTabBarState extends State<MyTabBar> {
       //   );
       //   return false;
       // },
-      backgroundColor: Color(0xffFEFFFF),
+      backgroundColor: Color(0xffFFFFFF),
       isVisible: !_hideNavBar,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
@@ -161,7 +161,7 @@ class _MyTabBarState extends State<MyTabBar> {
         ),
       ),
       confineToSafeArea: true,
-      navBarHeight: 150.h,
+      navBarHeight: 56.h,
       navBarStyle: _navBarStyle, // Choose the nav bar style with this property
     ),
   );
