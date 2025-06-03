@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/repository/data/wallet_list_data.dart';
+import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -24,12 +25,12 @@ class WalletItem extends StatelessWidget {
           Container(
             width: 46.w,
             margin: EdgeInsets.only(right: 8.w),
-            padding: EdgeInsets.all(12.r),
+            padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
               color: const Color(0xFFFFEBE6),
               borderRadius: BorderRadius.all(Radius.circular(6.r)),
             ),
-            child: FittedBox(fit: BoxFit.contain, child: Text("占")),
+            child: GetSvg.url(data?.walletTypeIcon ?? ""),
           ),
           Expanded(
             child: Row(

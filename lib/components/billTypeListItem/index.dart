@@ -6,7 +6,11 @@ import 'package:logger/logger.dart';
 class BillTypeListItem extends StatefulWidget {
   final BillTypeItemData data;
   final Function(BillTypeItemData data) navigateToAddEdit;
-  const BillTypeListItem({super.key, required this.data, required this.navigateToAddEdit});
+  const BillTypeListItem({
+    super.key,
+    required this.data,
+    required this.navigateToAddEdit,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +25,9 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
 
   void toSelectedItem(int index) {
     final isEdit = (index + 1) <= (widget.data.children?.length ?? 0);
-    widget.navigateToAddEdit(isEdit ? (widget.data.children![index]) : _baseData);
+    widget.navigateToAddEdit(
+      isEdit ? (widget.data.children![index]) : _baseData,
+    );
   }
 
   @override
@@ -47,7 +53,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
         child: ExpansionTile(
           leading: Icon(
             _isExpanded ? Icons.arrow_drop_down : Icons.arrow_right,
-            size: 55.r,
+            size: 14.r,
             color: Colors.grey.shade500,
           ),
           trailing: SizedBox.shrink(),
@@ -57,51 +63,35 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
             });
           },
           title: Container(
-            height: 200.h,
-            padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+            // height: 200.h,
+            padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
             child: Row(
               children: [
                 Container(
-                  height: 160.h,
-                  width: 160.w,
-                  margin: EdgeInsets.only(right: 30.w),
-                  padding: EdgeInsets.all(20.r),
+                  height: 66.h,
+                  width: 66.w,
+                  margin: EdgeInsets.only(right: 12.w),
+                  padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFEBE6),
-                    borderRadius: BorderRadius.all(Radius.circular(50.r)),
+                    borderRadius: BorderRadius.all(Radius.circular(6.r)),
                   ),
                   child: FittedBox(
                     fit: BoxFit.contain,
                     child: Text(widget.data.icon ?? ""),
                   ),
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.data.name ?? "",
-                            style: TextStyle(
-                              fontSize: 40.r,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        transform: Matrix4.translationValues(60.w, 0, 0),
-                        child: Icon(
-                          Icons.more_horiz,
-                          size: 50.r,
-                          color: Colors.grey.shade500,
-                        ),
-                      ),
-                    ],
+                Text(
+                  widget.data.name ?? "",
+                  style: TextStyle(fontSize: 14.r, fontWeight: FontWeight.w500),
+                ),
+                Spacer(),
+                Container(
+                  transform: Matrix4.translationValues(32.w, 0, 0),
+                  child: Icon(
+                    Icons.more_horiz,
+                    size: 14.r,
+                    color: Colors.grey.shade500,
                   ),
                 ),
               ],
@@ -112,27 +102,27 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
               // decoration: BoxDecoration(
               //   color: Colors.red,
               // ),
-              padding: EdgeInsets.only(left: 60.w, right: 60.w, bottom: 20.h),
+              padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     "子分类更改或删除请点击对应子分类图标",
                     style: TextStyle(
-                      fontSize: 34.r,
+                      fontSize: 12.r,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 12.h),
                   GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: (widget.data.children?.length ?? 0) + 1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 5, // 列数
-                      mainAxisSpacing: 10.h, // 主轴间距
-                      crossAxisSpacing: 40.w, // 次轴间距
-                      childAspectRatio: 0.65, // 宽高比例
+                      mainAxisSpacing: 16.h, // 主轴间距
+                      crossAxisSpacing: 12.w, // 次轴间距
+                      childAspectRatio: 0.8857, // 宽高比例
                     ),
                     itemBuilder: (context, index) {
                       return Column(
@@ -146,14 +136,14 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                               backgroundColor:
                                   Colors.deepOrange.shade50, // 背景颜色
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(60.r), // 圆角
+                                borderRadius: BorderRadius.circular(6.r), // 圆角
                               ),
                               padding: EdgeInsets.all(0),
                             ),
                             child: Container(
-                              height: 160.h,
-                              width: 160.w,
-                              padding: EdgeInsets.all(20.r),
+                              height: 46.h,
+                              width: 46.w,
+                              padding: EdgeInsets.all(6.r),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFEBE6),
                                 borderRadius: BorderRadius.all(
@@ -175,12 +165,13 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 4.h),
                           Text(
                             (index + 1) <= (widget.data.children?.length ?? 0)
                                 ? (widget.data.children?[index].name ?? "")
                                 : "添加子分类",
                             style: TextStyle(
-                              fontSize: 30.r,
+                              fontSize: 10.r,
                               fontWeight: FontWeight.w400,
                             ),
                           ),

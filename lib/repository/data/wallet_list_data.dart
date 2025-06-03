@@ -27,6 +27,7 @@ class WalletItemData {
     this.billId,
     this.walletType,
     this.walletTypeName,
+    this.walletTypeIcon,
     this.walletName,
     this.walletAmount,
     this.createTime,
@@ -38,6 +39,7 @@ class WalletItemData {
     billId = json['billId'];
     walletType = json['walletType'];
     walletTypeName = json['walletTypeName'];
+    walletTypeIcon = json['walletTypeIcon'];
     walletName = json['walletName'];
     walletAmount = json['walletAmount'];
     createTime = json['createTime'];
@@ -47,6 +49,7 @@ class WalletItemData {
   String? billId;
   int? walletType;
   String? walletTypeName;
+  String? walletTypeIcon;
   String? walletName;
   String? walletAmount;
   String? createTime;
@@ -58,6 +61,7 @@ class WalletItemData {
     map['billId'] = billId;
     map['walletType'] = walletType;
     map['walletTypeName'] = walletTypeName;
+    map['walletTypeIcon'] = walletTypeIcon;
     map['walletName'] = walletName;
     map['walletAmount'] = walletAmount;
     map['createTime'] = createTime;

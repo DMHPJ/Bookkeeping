@@ -9,20 +9,20 @@ class BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 60.h,
-      left: 80.w,
-      right: 80.w,
+      bottom: 36.h,
+      left: 26.w,
+      right: 26.w,
       child: MaterialButton(
         onPressed: onPressed,
         minWidth: double.infinity,
-        height: 110.h,
-        color: Color(0xffAFC8DA),
+        height: 46.h,
+        color: Color(0xff2965FF),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(100.r)),
+          borderRadius: BorderRadius.all(Radius.circular(23.r)),
         ),
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 40.r, fontWeight: FontWeight.w400),
+          style: TextStyle(fontSize: 16.r, fontWeight: FontWeight.w500, color: Color(0xFFECECEC)),
         ),
       ),
     );

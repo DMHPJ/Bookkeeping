@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
+import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -30,10 +31,8 @@ class _MyPageState extends State<MyPage> {
     {"name": "购物清单", "icon": "占", "url": "shoppingList"},
   ];
 
-  void toSelectedPage(int index) {
-    final routeName = commonFunctionList[index]["url"]!;
-
-    switch (routeName) {
+  void toSelectedPage(String pageName) {
+    switch (pageName) {
       case "billType":
         PersistentNavBarNavigator.pushNewScreen(
           context,
@@ -41,8 +40,57 @@ class _MyPageState extends State<MyPage> {
           withNavBar: false,
         );
         break;
+      default: break;
     }
   }
+
+  Widget inkWellItem(String pageName, String title) => InkWell(
+    onTap: () => toSelectedPage(pageName), // 添加按钮点击事件
+    child: Column(
+      children: [
+        Container(
+          width: 24.h,
+          height: 24.w,
+          margin: EdgeInsets.only(bottom: 10.h),
+          child: GetSvg.url(
+            "basic/$pageName",
+            props: BasicSvgProps(color: Color(0xFF2965FF)),
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 14.r,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF333333),
+          ),
+        ),
+      ],
+    ),
+  );
+
+  Widget inkWellListItem(String iconName, String title) => Container(
+    padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
+    child: Row(
+      children: [
+        Container(
+          width: 14.w,
+          height: 14.h,
+          margin: EdgeInsets.only(right: 12.w),
+          child: GetSvg.url(
+            "basic/$iconName",
+            props: BasicSvgProps(color: Color(0xFF2965FF)),
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(fontSize: 14.r, fontWeight: FontWeight.w500),
+        ),
+        Spacer(),
+        Icon(Icons.chevron_right_rounded, size: 14.r, color: Color(0xFF2965FF)),
+      ],
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +102,20 @@ class _MyPageState extends State<MyPage> {
         backgroundColor: Color(0xFFF2F8FF),
       ),
       body: SafeArea(
+        bottom: false,
         child: Container(
           padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
             ),
           ),
           child: Column(
             children: [
               Container(
+                margin: EdgeInsets.only(bottom: 16.h),
                 padding: EdgeInsets.only(
                   top: 24.h,
                   bottom: 20.h,
@@ -91,6 +143,7 @@ class _MyPageState extends State<MyPage> {
                           width: 68.h,
                           height: 68.w,
                           margin: EdgeInsets.only(right: 16.w),
+                          padding: EdgeInsets.all(4.r),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
@@ -105,93 +158,105 @@ class _MyPageState extends State<MyPage> {
                               ),
                             ],
                           ),
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text("占"),
+                          child: GetSvg.url(
+                            "basic/user",
+                            props: BasicSvgProps(color: Color(0xFF999999)),
                           ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("阿七七", style: TextStyle(fontSize: 20.r, fontWeight: FontWeight.w500)),
+                            Text(
+                              "用户名",
+                              style: TextStyle(
+                                fontSize: 20.r,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                             SizedBox(height: 8.h),
-                            Text("ID: 1234567890", style: TextStyle(fontSize: 12.r, fontWeight: FontWeight.w500)),
+                            Text(
+                              "ID: 1234567890",
+                              style: TextStyle(
+                                fontSize: 12.r,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ],
                         ),
                         Spacer(),
                         Container(
                           width: 32.h,
                           height: 32.w,
+                          padding: EdgeInsets.all(8.r),
                           decoration: BoxDecoration(
                             color: Color(0xFFF8F8F8),
                             borderRadius: BorderRadius.all(
                               Radius.circular(50.r),
                             ),
                           ),
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text("占"),
+                          child: GetSvg.url(
+                            "basic/setting",
+                            props: BasicSvgProps(color: Color(0xFF333333)),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                    SizedBox(height: 26.h,),
+                    SizedBox(height: 26.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Column(
-                          children: [Text("收支")],
-                        ),
-                        Column(
-                          children: [Text("账单")],
-                        ),
-                        Column(
-                          children: [Text("资产")],
-                        )
+                        inkWellItem("billType", "收支"),
+                        inkWellItem("bill", "账单"),
+                        inkWellItem("wallet", "资产"),
                       ],
-                    )
+                    ),
                   ],
                 ),
-                // child: Column(
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     Text("常用功能"),
-                //     SizedBox(
-                //       height: 545.h,
-                //       width: double.infinity,
-                //       child: GridView.builder(
-                //         itemCount: commonFunctionList.length,
-                //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                //           crossAxisCount: 4, // 列数
-                //           mainAxisSpacing: 30.h, // 主轴间距
-                //           crossAxisSpacing: 35.w, // 次轴间距
-                //           childAspectRatio: 1.4, // 宽高比例
-                //         ),
-                //         itemBuilder: (context, index) {
-                //           return ElevatedButton(
-                //             onPressed: () => toSelectedPage(index), // 添加按钮点击事件
-                //             style: ElevatedButton.styleFrom(
-                //               elevation: 0,
-                //               side: BorderSide.none,
-                //               backgroundColor:
-                //                   Colors.deepOrange.shade50, // 背景颜色
-                //               shape: RoundedRectangleBorder(
-                //                 borderRadius: BorderRadius.circular(60.r), // 圆角
-                //               ),
-                //             ),
-                //             child: Column(
-                //               mainAxisAlignment: MainAxisAlignment.center,
-                //               children: [
-                //                 Text("$index"),
-                //                 Text(commonFunctionList[index]["name"]!),
-                //               ],
-                //             ),
-                //           );
-                //         },
-                //       ),
-                //     ),
-                //   ],
-                // ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 16.h),
+                padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                ),
+                child: Column(
+                  children: [
+                    inkWellListItem("saveMoney", "存钱"),
+                    inkWellListItem("timedAccounting", "定时记账"),
+                    inkWellListItem("timedAccounting", "定时记账"),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 16.h),
+                padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                ),
+                child: Column(
+                  children: [
+                    inkWellListItem("saveMoney", "存钱"),
+                    inkWellListItem("timedAccounting", "定时记账"),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(41, 101, 255, 0.06),
+                      offset: Offset(0.r, 0.r),
+                      spreadRadius: 4.r,
+                      blurRadius: 8.r,
+                    ),
+                  ],
+                ),
+                child: Column(children: [inkWellListItem("timedAccounting", "定时记账")]),
               ),
             ],
           ),

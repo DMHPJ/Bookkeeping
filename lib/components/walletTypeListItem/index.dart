@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
+import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
 
 class WalletTypeListItem extends StatefulWidget {
@@ -45,10 +47,7 @@ class _WalletTypeListItemState extends State<WalletTypeListItem> {
                     color: const Color(0xFFFFEBE6),
                     borderRadius: BorderRadius.all(Radius.circular(50.r)),
                   ),
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(widget.data.icon ?? ""),
-                  ),
+                  child: GetSvg.url(widget.data.icon ?? ""),
                 ),
                 Expanded(
                   child: Row(
