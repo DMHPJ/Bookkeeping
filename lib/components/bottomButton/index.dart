@@ -22,7 +22,7 @@ class BottomButton extends StatelessWidget {
         ),
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 16.r, fontWeight: FontWeight.w500, color: Color(0xFFECECEC)),
+          style: TextStyle(fontSize: 16.r, fontWeight: FontWeight.w500, color: Color(0xFFFFFFFF)),
         ),
       ),
     );

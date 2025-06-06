@@ -30,7 +30,7 @@ class WalletItem extends StatelessWidget {
               color: const Color(0xFFFFEBE6),
               borderRadius: BorderRadius.all(Radius.circular(6.r)),
             ),
-            child: GetSvg.url(data?.walletTypeIcon ?? ""),
+            child: GetSvg.url("walletType/${data?.walletTypeIcon}"),
           ),
           Expanded(
             child: Row(

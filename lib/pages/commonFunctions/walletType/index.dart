@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/walletTypeListItem/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/walletType/model.dart';
+import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
+import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,10 @@ class _WalletTypeState extends State<WalletType>
     walletTypeModel.getBillTypeList(_tabController.index);
   }
 
+  void navigateToAddEdit(WalletTypeItemData data) {
+    Navigator.pushNamed(context, RoutePath.addEditFund, arguments: data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<WalletTypeModel>(
@@ -46,51 +52,78 @@ class _WalletTypeState extends State<WalletType>
                 tabs: [Text("资金"), Text("投资"), Text("应付"), Text("应收")],
                 isScrollable: true,
                 onTap: (value) => handleTabChange(value),
-                indicator: UnderlineTabIndicator(
-                  borderRadius: BorderRadius.all(Radius.circular(99.r)),
-                  borderSide: BorderSide(
-                    color: Color(0xFF1c1c22), // 指示器颜色
-                    width: 75.h, // 指示器厚度
-                  ),
-                ),
+                dividerHeight: 0,
                 overlayColor: WidgetStateProperty.all(Colors.transparent),
-                indicatorSize: TabBarIndicatorSize.tab,
                 labelStyle: TextStyle(
-                  fontSize: 36.r,
+                  fontSize: 14.r,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFFECECEC),
+                  color: Color(0xFFFFFFFF),
+                ),
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  color: Color(0xFF2965FF),
+                  borderRadius: BorderRadius.all(Radius.circular(99.r)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(41, 101, 255, 0.16),
+                      offset: Offset(0.r, 0.r),
+                      spreadRadius: 4.r,
+                      blurRadius: 8.r,
+                    ),
+                  ],
                 ),
                 tabAlignment: TabAlignment.center,
                 labelPadding: EdgeInsets.only(
-                  right: 30.w,
-                  left: 30.w,
-                  top: 10.h,
-                  bottom: 10.h,
+                  right: 18.w,
+                  left: 18.w,
+                  top: 6.h,
+                  bottom: 6.h,
                 ),
               ),
             ],
           ),
           centerTitle: true,
-          toolbarHeight: 160.h,
-          surfaceTintColor: Color(0xffAFC8DA),
-          backgroundColor: Color(0xffAFC8DA),
+          toolbarHeight: 72.h,
+          surfaceTintColor: Color(0xFFF2F8FF),
+          backgroundColor: Color(0xFFF2F8FF),
         ),
-        body: SingleChildScrollView(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
+            ),
+          ),
           child: Column(
             children: [
-              Consumer<WalletTypeModel>(
-                builder:
-                    (context, value, child) => ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: value.walletTypeListData?.length ?? 0,
-                      itemBuilder:
-                          (context, index) => WalletTypeListItem(
-                            data: value.walletTypeListData![index],
-                          ),
-                    ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Consumer<WalletTypeModel>(
+                        builder:
+                            (context, value, child) => ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: value.walletTypeListData?.length ?? 0,
+                              itemBuilder:
+                                  (context, index) => InkWell(
+                                    onTap:
+                                        () => navigateToAddEdit(
+                                          value.walletTypeListData![index],
+                                        ),
+                                    child: WalletTypeListItem(
+                                      data: value.walletTypeListData![index],
+                                    ),
+                                  ),
+                            ),
+                      ),
+                      SizedBox(height: 80.h),
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(height: 170.h),
             ],
           ),
         ),

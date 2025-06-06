@@ -95,6 +95,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF9F9F9),
       appBar: AppBar(
         title: Text("我的"),
         centerTitle: true,
@@ -102,7 +103,6 @@ class _MyPageState extends State<MyPage> {
         backgroundColor: Color(0xFFF2F8FF),
       ),
       body: SafeArea(
-        bottom: false,
         child: Container(
           padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
           decoration: BoxDecoration(

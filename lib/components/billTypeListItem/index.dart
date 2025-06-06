@@ -45,17 +45,12 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 1, color: Colors.grey.shade300),
+          bottom: BorderSide(width: 1, color: Color(0xFFE5E5E5)),
         ),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          leading: Icon(
-            _isExpanded ? Icons.arrow_drop_down : Icons.arrow_right,
-            size: 14.r,
-            color: Colors.grey.shade500,
-          ),
           trailing: SizedBox.shrink(),
           onExpansionChanged: (bool expanded) {
             setState(() {
@@ -65,15 +60,22 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
           title: Container(
             // height: 200.h,
             padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
+            decoration: BoxDecoration(color: Colors.transparent),
             child: Row(
               children: [
+                Icon(
+                  _isExpanded ? Icons.arrow_drop_down : Icons.arrow_right,
+                  size: 24.r,
+                  color: Color(0xFF999999),
+                ),
+                SizedBox(width: 4.w),
                 Container(
                   height: 66.h,
                   width: 66.w,
                   margin: EdgeInsets.only(right: 12.w),
                   padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFFEBE6),
+                    color: const Color(0xFFFFF2EF),
                     borderRadius: BorderRadius.all(Radius.circular(6.r)),
                   ),
                   child: FittedBox(
@@ -87,11 +89,11 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                 ),
                 Spacer(),
                 Container(
-                  transform: Matrix4.translationValues(32.w, 0, 0),
+                  transform: Matrix4.translationValues(24.w, 0, 0),
                   child: Icon(
                     Icons.more_horiz,
-                    size: 14.r,
-                    color: Colors.grey.shade500,
+                    size: 24.r,
+                    color: Color(0xFF999999),
                   ),
                 ),
               ],
@@ -134,7 +136,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                               elevation: 0,
                               side: BorderSide.none,
                               backgroundColor:
-                                  Colors.deepOrange.shade50, // 背景颜色
+                                  Color(0xFFFFF2EF), // 背景颜色
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6.r), // 圆角
                               ),
@@ -145,7 +147,7 @@ class _BillTypeListItemState extends State<BillTypeListItem> {
                               width: 46.w,
                               padding: EdgeInsets.all(6.r),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFFEBE6),
+                                color: const Color(0xFFFFF2EF),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(50.r),
                                 ),
