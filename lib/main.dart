@@ -3,6 +3,7 @@ import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/pages/tabbar/index.dart';
 import 'package:flutter_application_1/repository/appSettings.dart';
 import 'package:flutter_application_1/route/routes.dart';
+import 'package:flutter_application_1/utils/globalTheme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         builder:
             (materialAppContext, child) => MaterialApp(
               title: 'Flutter Demo',
+              theme: GlobalTheme.themeData(),
               // initialRoute: RoutePath.home,
               home: MyTabBar(menuScreenContext: materialAppContext),
               onGenerateRoute: Routes.generateRoute,

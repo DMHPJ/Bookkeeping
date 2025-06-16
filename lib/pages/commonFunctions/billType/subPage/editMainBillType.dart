@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
 import 'package:flutter_application_1/components/bottomButton/index.dart';
 import 'package:flutter_application_1/repository/api.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
@@ -44,71 +45,31 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("添加主类"),
-        centerTitle: true,
-        surfaceTintColor: Color(0xFFF2F8FF),
-        backgroundColor: Color(0xFFF2F8FF),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
-          ),
-        ),
-        child: Form(
-          key: _editBillTypeFormKey,
-          child: Stack(
-            children: [
-              Container(
-                margin: EdgeInsets.all(16.r),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (billTypeForm.parentId != null) ...[
-                      TextFormField(
-                        readOnly: true,
-                        initialValue: billTypeForm.parentName,
-                        decoration: InputDecoration(
-                          labelText: "一级分类",
-                          filled: true, // 填充背景颜色
-                          fillColor: Color(0xFFFFFFFF), // 设置淡灰色背景
-                          contentPadding: EdgeInsets.only(left: 24.w, right: 16.w, top: 16.h, bottom: 16.h),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(99.r), // 设置圆角
-                            borderSide: BorderSide.none, // 去掉边框
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(99.r),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(99.r),
-                            borderSide: BorderSide.none,
-                          ),
-                          suffixIcon: Container(
-                            height: 32.h,
-                            width: 32.w,
-                            margin: EdgeInsets.only(right: 12.w, bottom: 4.h),
-                            child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(billTypeForm.parentIcon ?? ""),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 24.h),
-                    ],
+    return GradientMainBox(
+      title: "添加主类",
+      body: Form(
+        key: _editBillTypeFormKey,
+        child: Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.all(16.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (billTypeForm.parentId != null) ...[
                     TextFormField(
+                      readOnly: true,
+                      initialValue: billTypeForm.parentName,
                       decoration: InputDecoration(
-                        labelText: "分类名称",
-                        hintText: "限4个中文字符或10个英文字符",
+                        labelText: "一级分类",
                         filled: true, // 填充背景颜色
-                        fillColor: Color(0xFFFFFFFF),
-                        contentPadding: EdgeInsets.only(left: 24.w, right: 16.w, top: 16.h, bottom: 16.h),
+                        fillColor: Color(0xFFFFFFFF), // 设置淡灰色背景
+                        contentPadding: EdgeInsets.only(
+                          left: 24.w,
+                          right: 16.w,
+                          top: 16.h,
+                          bottom: 16.h,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(99.r), // 设置圆角
                           borderSide: BorderSide.none, // 去掉边框
@@ -127,48 +88,84 @@ class _EditMainBillTypeState extends State<EditMainBillType> {
                           margin: EdgeInsets.only(right: 12.w, bottom: 4.h),
                           child: FittedBox(
                             fit: BoxFit.contain,
-                            child: Text(billTypeForm.icon ?? ""),
+                            child: Text(billTypeForm.parentIcon ?? ""),
                           ),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '分类名称';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) => billTypeForm.name = value,
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("是否作为收入类型"),
-                              Switch(
-                                value: billTypeForm.isIncome == 1,
-                                onChanged:
-                                    (value) => setState(() {
-                                      billTypeForm.isIncome = value ? 1 : 0;
-                                    }),
-                              ),
-                            ],
-                          ),
-                          Text("建议使用 emoji 😊 开头，图标默认为开头首个字符"),
-                          // Text("选择分类图标后名称将自动填充，也可以自行修改分类名称"),
-                        ],
+                    SizedBox(height: 24.h),
+                  ],
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "分类名称",
+                      hintText: "限4个中文字符或10个英文字符",
+                      filled: true, // 填充背景颜色
+                      fillColor: Color(0xFFFFFFFF),
+                      contentPadding: EdgeInsets.only(
+                        left: 24.w,
+                        right: 16.w,
+                        top: 16.h,
+                        bottom: 16.h,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(99.r), // 设置圆角
+                        borderSide: BorderSide.none, // 去掉边框
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(99.r),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(99.r),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: Container(
+                        height: 32.h,
+                        width: 32.w,
+                        margin: EdgeInsets.only(right: 12.w, bottom: 4.h),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(billTypeForm.icon ?? ""),
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '分类名称';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => billTypeForm.name = value,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("是否作为收入类型"),
+                            Switch(
+                              value: billTypeForm.isIncome == 1,
+                              onChanged:
+                                  (value) => setState(() {
+                                    billTypeForm.isIncome = value ? 1 : 0;
+                                  }),
+                            ),
+                          ],
+                        ),
+                        Text("建议使用 emoji 😊 开头，图标默认为开头首个字符"),
+                        // Text("选择分类图标后名称将自动填充，也可以自行修改分类名称"),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              BottomButton(buttonText: "保存", onPressed: validForm),
-            ],
-          ),
+            ),
+            BottomButton(buttonText: "保存", onPressed: validForm),
+          ],
         ),
       ),
     );

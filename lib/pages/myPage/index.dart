@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +41,8 @@ class _MyPageState extends State<MyPage> {
           withNavBar: false,
         );
         break;
-      default: break;
+      default:
+        break;
     }
   }
 
@@ -94,172 +96,155 @@ class _MyPageState extends State<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF9F9F9),
-      appBar: AppBar(
-        title: Text("我的"),
-        centerTitle: true,
-        surfaceTintColor: Color(0xFFF2F8FF),
-        backgroundColor: Color(0xFFF2F8FF),
-      ),
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
-            ),
-          ),
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 16.h),
-                padding: EdgeInsets.only(
-                  top: 24.h,
-                  bottom: 20.h,
-                  left: 16.w,
-                  right: 16.w,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(41, 101, 255, 0.06),
-                      offset: Offset(0.r, 0.r),
-                      spreadRadius: 4.r,
-                      blurRadius: 8.r,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 68.h,
-                          height: 68.w,
-                          margin: EdgeInsets.only(right: 16.w),
-                          padding: EdgeInsets.all(4.r),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.r),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(41, 101, 255, 0.06),
-                                offset: Offset(0.r, 0.r),
-                                spreadRadius: 4.r,
-                                blurRadius: 8.r,
-                              ),
-                            ],
-                          ),
-                          child: GetSvg.url(
-                            "basic/user",
-                            props: BasicSvgProps(color: Color(0xFF999999)),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "用户名",
-                              style: TextStyle(
-                                fontSize: 20.r,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            SizedBox(height: 8.h),
-                            Text(
-                              "ID: 1234567890",
-                              style: TextStyle(
-                                fontSize: 12.r,
-                                fontWeight: FontWeight.w500,
-                              ),
+    return GradientMainBox(
+      title: "我的",
+      body: Container(
+        margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 16.h),
+              padding: EdgeInsets.only(
+                top: 24.h,
+                bottom: 20.h,
+                left: 16.w,
+                right: 16.w,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(41, 101, 255, 0.06),
+                    offset: Offset(0.r, 0.r),
+                    spreadRadius: 4.r,
+                    blurRadius: 8.r,
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 68.h,
+                        height: 68.w,
+                        margin: EdgeInsets.only(right: 16.w),
+                        padding: EdgeInsets.all(4.r),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(50.r)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(41, 101, 255, 0.06),
+                              offset: Offset(0.r, 0.r),
+                              spreadRadius: 4.r,
+                              blurRadius: 8.r,
                             ),
                           ],
                         ),
-                        Spacer(),
-                        Container(
-                          width: 32.h,
-                          height: 32.w,
-                          padding: EdgeInsets.all(8.r),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF8F8F8),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.r),
+                        child: GetSvg.url(
+                          "basic/user",
+                          props: BasicSvgProps(color: Color(0xFF999999)),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "用户名",
+                            style: TextStyle(
+                              fontSize: 20.r,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          child: GetSvg.url(
-                            "basic/setting",
-                            props: BasicSvgProps(color: Color(0xFF333333)),
+                          SizedBox(height: 8.h),
+                          Text(
+                            "ID: 1234567890",
+                            style: TextStyle(
+                              fontSize: 12.r,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
+                        ],
+                      ),
+                      Spacer(),
+                      Container(
+                        width: 32.h,
+                        height: 32.w,
+                        padding: EdgeInsets.all(8.r),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF8F8F8),
+                          borderRadius: BorderRadius.all(Radius.circular(50.r)),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 26.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        inkWellItem("billType", "收支"),
-                        inkWellItem("bill", "账单"),
-                        inkWellItem("wallet", "资产"),
-                      ],
-                    ),
-                  ],
-                ),
+                        child: GetSvg.url(
+                          "basic/setting",
+                          props: BasicSvgProps(color: Color(0xFF333333)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 26.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      inkWellItem("billType", "收支"),
+                      inkWellItem("bill", "账单"),
+                      inkWellItem("wallet", "资产"),
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                margin: EdgeInsets.only(bottom: 16.h),
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                ),
-                child: Column(
-                  children: [
-                    inkWellListItem("saveMoney", "存钱"),
-                    inkWellListItem("timedAccounting", "定时记账"),
-                    inkWellListItem("timedAccounting", "定时记账"),
-                  ],
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 16.h),
+              padding: EdgeInsets.only(left: 16.w, right: 16.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
               ),
-              Container(
-                margin: EdgeInsets.only(bottom: 16.h),
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                ),
-                child: Column(
-                  children: [
-                    inkWellListItem("saveMoney", "存钱"),
-                    inkWellListItem("timedAccounting", "定时记账"),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  inkWellListItem("saveMoney", "存钱"),
+                  inkWellListItem("timedAccounting", "定时记账"),
+                  inkWellListItem("timedAccounting", "定时记账"),
+                ],
               ),
-              Container(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(41, 101, 255, 0.06),
-                      offset: Offset(0.r, 0.r),
-                      spreadRadius: 4.r,
-                      blurRadius: 8.r,
-                    ),
-                  ],
-                ),
-                child: Column(children: [inkWellListItem("timedAccounting", "定时记账")]),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 16.h),
+              padding: EdgeInsets.only(left: 16.w, right: 16.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
               ),
-            ],
-          ),
+              child: Column(
+                children: [
+                  inkWellListItem("saveMoney", "存钱"),
+                  inkWellListItem("timedAccounting", "定时记账"),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 16.w, right: 16.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(41, 101, 255, 0.06),
+                    offset: Offset(0.r, 0.r),
+                    spreadRadius: 4.r,
+                    blurRadius: 8.r,
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [inkWellListItem("timedAccounting", "定时记账")],
+              ),
+            ),
+          ],
         ),
       ),
     );

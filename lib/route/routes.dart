@@ -4,10 +4,12 @@ import 'package:flutter_application_1/pages/bill/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/editMainBillType.dart';
+import 'package:flutter_application_1/pages/commonFunctions/walletType/subPage/addEditFund.dart';
 import 'package:flutter_application_1/pages/home/index.dart';
 import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
+import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(final RouteSettings settings) {
@@ -27,6 +29,9 @@ class Routes {
         return pageRoute(EditMainBillType(argument: argument));
       case RoutePath.walletType:
         return pageRoute(WalletType());
+      case RoutePath.addEditFund:
+        final argument = settings.arguments as WalletTypeItemData?;
+        return pageRoute(AddEditFund(argument: argument));
     }
     return pageRoute(
       Scaffold(body: SafeArea(child: Center(child: Text('404')))),
@@ -61,5 +66,6 @@ class RoutePath {
   // 常用功能 - 资产类型
   static const String walletType = '/commonFunctions/walletType/index';
   // 常用功能 - 资产类型 - 增改资金类型账户
-  static const String addEditFund = '/commonFunctions/walletType/subPage/addEditFund';
+  static const String addEditFund =
+      '/commonFunctions/walletType/subPage/addEditFund';
 }
