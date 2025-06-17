@@ -3,6 +3,7 @@ import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/repository/data/bill_chr_list_data.dart';
 import 'package:flutter_application_1/repository/data/bill_main_info_data.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
+import 'package:flutter_application_1/repository/data/wallet_list_data.dart';
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
 
 class Filter {
@@ -51,5 +52,11 @@ class Api {
     Response response = await DioInstance.instance().post(path: "/walletType/list", data: data.toJson());
     WalletTypeListData walletTypeListData = WalletTypeListData.fromJson(response.data);
     return walletTypeListData.data;
+  }
+
+  // 增改资产
+  Future<String> updateWallet(WalletItemData walletItemData) async {
+    Response response = await DioInstance.instance().post(path: "/wallet/addUpdate", data: walletItemData.toJson());
+    return response.data;
   }
 }

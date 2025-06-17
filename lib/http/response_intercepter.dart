@@ -26,7 +26,7 @@ class ResponseIntercepter extends Interceptor {
         // code == 500 为 已知的异常
         else if (responseData.code == 500) {
           handler.next(
-            Response(requestOptions: response.requestOptions, data: true),
+            Response(requestOptions: response.requestOptions, data: responseData.msg),
           );
         }
       } catch (error) {}

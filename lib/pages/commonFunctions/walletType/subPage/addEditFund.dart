@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
 import 'package:flutter_application_1/components/bottomButton/index.dart';
 import 'package:flutter_application_1/components/titleWithIcon/title_with_icon.dart';
+import 'package:flutter_application_1/repository/api.dart';
 import 'package:flutter_application_1/repository/data/wallet_list_data.dart';
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
+import 'package:oktoast/oktoast.dart';
 
 class AddEditFund extends StatefulWidget {
   final WalletTypeItemData? argument;
@@ -22,6 +24,7 @@ class _AddEditFundState extends State<AddEditFund> {
   final logger = Logger();
   final _editWalletItemFormKey = GlobalKey<FormState>();
   late WalletItemData walletItemForm;
+  bool createBill = true;
 
   @override
   void initState() {
@@ -31,11 +34,22 @@ class _AddEditFundState extends State<AddEditFund> {
       walletType: widget.argument?.type,
       walletTypeName: widget.argument?.name,
       walletTypeIcon: widget.argument?.icon,
+      addCalculate: 1,
     );
   }
 
+  Future toAddUpdateWallet() async {
+    final String res = await Api.instance.updateWallet(walletItemForm);
+    showToast(res);
+    Navigator.pop(context);
+  }
+
   void validForm() {
-    logger.i(walletItemForm);
+    if (_editWalletItemFormKey.currentState!.validate()) {
+      _editWalletItemFormKey.currentState!.save();
+      toAddUpdateWallet();
+      logger.i(walletItemForm);
+    }
   }
 
   Widget backgroundCard({
@@ -211,8 +225,10 @@ class _AddEditFundState extends State<AddEditFund> {
                           ),
                           Spacer(),
                           Switch(
-                            value: false,
-                            onChanged: (value) => setState(() {}),
+                            value: createBill,
+                            onChanged: (value) => setState(() {
+                              createBill = value;
+                            }),
                           ),
                         ],
                       ),
