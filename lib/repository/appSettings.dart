@@ -44,7 +44,6 @@ class Global {
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();
     prefs = await SharedPreferences.getInstance();
-    var _profile = prefs.getString("profile");
     //初始化网络请求相关配置
     DioInstance.instance().initDio(baseUrl: Environment.apiUrl);
   }

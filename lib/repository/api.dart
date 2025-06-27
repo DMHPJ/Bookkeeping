@@ -3,6 +3,8 @@ import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/repository/data/bill_chr_list_data.dart';
 import 'package:flutter_application_1/repository/data/bill_main_info_data.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
+import 'package:flutter_application_1/repository/data/login_data.dart';
+import 'package:flutter_application_1/repository/data/login_response_data.dart';
 import 'package:flutter_application_1/repository/data/wallet_list_data.dart';
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
 import 'package:logger/web.dart';
@@ -15,13 +17,24 @@ class Api {
 
   Api._();
 
+  Future<LoginResponseData> login(LoginData loginData) async {
+    Response response = await DioInstance.instance().post(path: "/login");
+    LoginResponseData loginResponseData;
+    if (response.data?.data != null) {
+      loginResponseData = LoginResponseData.fromJson(response.data.data);
+    } else {
+      loginResponseData = LoginResponseData();
+    }
+    return loginResponseData;
+  }
+
   Future<List<BillChrItemData>?> getBillChrList() async {
     Response response = await DioInstance.instance().post(
       path: "/billChr/list",
     );
     BillChrListData billChrListData;
-    if(response.data?.data != null) {
-    billChrListData = BillChrListData.fromJson(response.data.data);
+    if (response.data?.data != null) {
+      billChrListData = BillChrListData.fromJson(response.data.data);
     } else {
       billChrListData = BillChrListData();
     }
@@ -32,7 +45,7 @@ class Api {
     Response response = await DioInstance.instance().post(path: "/bill/info");
     logger.i(response);
     BillMainInfoData billMainInfoData;
-    if(response.data?.data != null) {
+    if (response.data?.data != null) {
       billMainInfoData = BillMainInfoData.fromJson(response.data.data);
     } else {
       billMainInfoData = BillMainInfoData();
@@ -47,8 +60,8 @@ class Api {
       path: "/type/list",
       data: data.toJson(),
     );
-    BillTypeListData billTypeListData; 
-    if(response.data?.data != null) {
+    BillTypeListData billTypeListData;
+    if (response.data?.data != null) {
       billTypeListData = BillTypeListData.fromJson(response.data.data);
     } else {
       billTypeListData = BillTypeListData();
@@ -78,7 +91,7 @@ class Api {
       data: data.toJson(),
     );
     WalletTypeListData walletTypeListData;
-    if(response.data?.data != null) {
+    if (response.data?.data != null) {
       walletTypeListData = WalletTypeListData.fromJson(response.data.data);
     } else {
       walletTypeListData = WalletTypeListData();
@@ -92,6 +105,6 @@ class Api {
       path: "/wallet/addUpdate",
       data: walletItemData.toJson(),
     );
-    return response.data?.msg  ?? "未知异常";
+    return response.data?.msg ?? "未知异常";
   }
 }
