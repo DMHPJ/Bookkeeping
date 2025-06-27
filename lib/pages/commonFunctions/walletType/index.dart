@@ -5,6 +5,7 @@ import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class WalletType extends StatefulWidget {
   const WalletType({super.key});
@@ -34,7 +35,7 @@ class _WalletTypeState extends State<WalletType>
   }
 
   void navigateToAddEdit(WalletTypeItemData data) {
-    Navigator.pushNamed(context, RoutePath.addEditFund, arguments: data);
+    Get.toNamed(RoutePath.addEditFund, arguments: data);
   }
 
   @override

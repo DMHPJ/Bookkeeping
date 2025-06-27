@@ -7,6 +7,7 @@ import 'package:flutter_application_1/route/routes.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class BillType extends StatefulWidget {
   const BillType({super.key});
@@ -33,11 +34,10 @@ class _BillTypeState extends State<BillType>
   }
 
   void navigateToAddEdit(BillTypeItemData data) {
-    Navigator.pushNamed(
-      context,
+    Get.toNamed(
       RoutePath.addEditBillType,
       arguments: data,
-    ).then((value) => billTypeModel.getBillTypeList(_tabController.index));
+    )?.then((value) => billTypeModel.getBillTypeList(_tabController.index));
   }
 
   void toAddBillMainType() {

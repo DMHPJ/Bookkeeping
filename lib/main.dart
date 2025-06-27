@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/pages/tabbar/index.dart';
 import 'package:flutter_application_1/repository/appSettings.dart';
 import 'package:flutter_application_1/route/routes.dart';
-import 'package:flutter_application_1/utils/globalTheme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:get/get.dart';
 
 void main() {
-  DioInstance.instance().initDio(baseUrl: Environment.apiUrl);
-  runApp(const MyApp());
+  Global.init().then((e) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,14 +21,14 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder:
-            (materialAppContext, child) => MaterialApp(
+            (materialAppContext, child) => GetMaterialApp(
               title: 'Flutter Demo',
-              theme: GlobalTheme.themeData(),
+              theme: Global.globalTheme(),
               // initialRoute: RoutePath.home,
               home: MyTabBar(menuScreenContext: materialAppContext),
-              onGenerateRoute: Routes.generateRoute,
+              getPages: AppPages.pages,
             ),
       ),
     );
-  }
+  } 
 }

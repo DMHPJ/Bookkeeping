@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Report extends StatefulWidget {
   const Report({super.key});
@@ -18,7 +19,7 @@ class _ReportState extends State<Report> {
       body: SafeArea(
         child: Container(
           child: InkWell(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Get.back(),
           ),
         ),
       ),

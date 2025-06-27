@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Bill extends StatefulWidget {
   const Bill({super.key});
@@ -16,7 +17,7 @@ class _BillState extends State<Bill> {
     return Scaffold(
       appBar: AppBar(title: Text("账单")),
       body: SafeArea(
-        child: Container(child: InkWell(onTap: () => Navigator.pop(context))),
+        child: Container(child: InkWell(onTap: () => Get.back())),
       ),
     );
   }

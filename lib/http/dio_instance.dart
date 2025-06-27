@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/http/base_model.dart';
 import 'package:flutter_application_1/http/http_method.dart';
 import 'package:flutter_application_1/http/print_log_intercepter.dart';
 import 'package:flutter_application_1/http/response_intercepter.dart';
+import 'package:flutter_application_1/repository/appSettings.dart';
 
 class DioInstance {
   static DioInstance? _instance;
@@ -15,6 +17,7 @@ class DioInstance {
   final Dio _dio = Dio();
 
   final Duration _defaultTime = const Duration(seconds: 30);
+  
 
   void initDio({
     required String baseUrl,
@@ -26,6 +29,9 @@ class DioInstance {
     String? contentType,
   }) {
     _dio.options = BaseOptions(
+      headers: {
+        "Authorization": "Bearer ${Global.prefs.getString('token')}"
+      },
       baseUrl: baseUrl,
       method: httpMethod,
       connectTimeout: connectTimeout ?? _defaultTime,
@@ -41,7 +47,7 @@ class DioInstance {
   }
 
   // get请求
-  Future<Response> get({
+  Future<Response<BaseModel>> get({
     required String path,
     Map<String, dynamic>? parma,
     Options? options,

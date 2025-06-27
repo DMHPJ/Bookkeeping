@@ -9,6 +9,7 @@ import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:get/get.dart';
 
 class AddEditFund extends StatefulWidget {
   final WalletTypeItemData? argument;
@@ -41,7 +42,7 @@ class _AddEditFundState extends State<AddEditFund> {
   Future toAddUpdateWallet() async {
     final String res = await Api.instance.updateWallet(walletItemForm);
     showToast(res);
-    Navigator.pop(context);
+    Get.back();
   }
 
   void validForm() {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
+import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:get/get.dart';
 
 class MyPage extends StatefulWidget {
   final String info;
@@ -35,11 +36,7 @@ class _MyPageState extends State<MyPage> {
   void toSelectedPage(String pageName) {
     switch (pageName) {
       case "billType":
-        PersistentNavBarNavigator.pushNewScreen(
-          context,
-          screen: const BillType(),
-          withNavBar: false,
-        );
+        Get.toNamed(RoutePath.billType);
         break;
       default:
         break;
@@ -244,6 +241,7 @@ class _MyPageState extends State<MyPage> {
                 children: [inkWellListItem("timedAccounting", "定时记账")],
               ),
             ),
+            Text("唯一识别码")
           ],
         ),
       ),

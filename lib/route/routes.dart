@@ -6,14 +6,18 @@ import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart'
 import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/editMainBillType.dart';
 import 'package:flutter_application_1/pages/commonFunctions/walletType/subPage/addEditFund.dart';
 import 'package:flutter_application_1/pages/home/index.dart';
+import 'package:flutter_application_1/pages/login/index.dart';
 import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
 import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
+import 'package:get/get.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(final RouteSettings settings) {
     switch (settings.name) {
+      case RoutePath.login:
+        return pageRoute(LoginPage());
       case RoutePath.home:
         return pageRoute(HomePage());
       case RoutePath.bill:
@@ -49,6 +53,8 @@ class Routes {
 
 // 路由树
 class RoutePath {
+  // 登录
+  static const String login = '/login/index';
   // 首页
   static const String home = '/home/index';
   // 账单
@@ -68,4 +74,18 @@ class RoutePath {
   // 常用功能 - 资产类型 - 增改资金类型账户
   static const String addEditFund =
       '/commonFunctions/walletType/subPage/addEditFund';
+}
+
+class AppPages {
+  static final pages = [
+    GetPage(name: RoutePath.login, page: () => LoginPage()),
+    GetPage(name: RoutePath.home, page: () => HomePage()),
+    GetPage(name: RoutePath.bill, page: () => Bill()),
+    GetPage(name: RoutePath.report, page: () => Report()),
+    GetPage(name: RoutePath.myPage, page: () => MyPage()),
+    GetPage(name: RoutePath.billType, page: () => BillType()),
+    GetPage(name: RoutePath.addEditBillType, page: () => EditMainBillType()),
+    GetPage(name: RoutePath.walletType, page: () => WalletType()),
+    GetPage(name: RoutePath.addEditFund, page: () => AddEditFund()),
+  ];
 }
