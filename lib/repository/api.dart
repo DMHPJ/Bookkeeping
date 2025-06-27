@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/http/base_model.dart';
 import 'package:flutter_application_1/http/dio_instance.dart';
 import 'package:flutter_application_1/repository/data/bill_chr_list_data.dart';
 import 'package:flutter_application_1/repository/data/bill_main_info_data.dart';

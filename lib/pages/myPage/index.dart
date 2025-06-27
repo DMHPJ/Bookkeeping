@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
-import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
