@@ -18,7 +18,10 @@ class Api {
   Api._();
 
   Future<LoginResponseData> login(LoginData loginData) async {
-    Response response = await DioInstance.instance().post(path: "/login");
+    Response response = await DioInstance.instance().post(
+      path: "/login",
+      data: loginData.toJson(),
+    );
     LoginResponseData loginResponseData;
     if (response.data?.data != null) {
       loginResponseData = LoginResponseData.fromJson(response.data.data);

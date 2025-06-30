@@ -4,8 +4,10 @@ import 'package:flutter_application_1/http/http_method.dart';
 import 'package:flutter_application_1/http/print_log_intercepter.dart';
 import 'package:flutter_application_1/http/response_intercepter.dart';
 import 'package:flutter_application_1/repository/appSettings.dart';
+import 'package:logger/logger.dart';
 
 class DioInstance {
+  static final logger = Logger();
   static DioInstance? _instance;
 
   DioInstance._();
@@ -29,9 +31,6 @@ class DioInstance {
     String? contentType,
   }) {
     _dio.options = BaseOptions(
-      headers: {
-        "Authorization": "Bearer ${Global.prefs.getString('token')}"
-      },
       baseUrl: baseUrl,
       method: httpMethod,
       connectTimeout: connectTimeout ?? _defaultTime,

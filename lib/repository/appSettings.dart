@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/http/dio_instance.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppSettings with ChangeNotifier {
@@ -23,6 +24,7 @@ class Environment {
 }
 
 class Global {
+  static final logger = Logger();
   static late SharedPreferences prefs;
   static ThemeData globalTheme() {
     return ThemeData(
@@ -39,6 +41,11 @@ class Global {
         onSurface: Color(0xFF333333),
       ),
     );
+  }
+
+  static void saveToken(String token) async {
+    await Global.prefs.setString('token', token);
+    logger.i("保存token: $token");
   }
 
   static Future init() async {

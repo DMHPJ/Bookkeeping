@@ -9,6 +9,13 @@ class LoginData {
   String? username;
   String? password;
 
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['username'] = username;
+    map['password'] = password;
+    return map;
+  }
+
   @override
   String toString() {
     return 'LoginData{username: $username, password: $password}';
