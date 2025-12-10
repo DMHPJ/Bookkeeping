@@ -12,7 +12,7 @@ class ResponseIntercepter extends Interceptor {
         var responseData = BaseModel.fromJson(response.data);
         if (responseData.code == 401) {
           // 跳转到登录页面
-          get_package.Get.offAllNamed(RoutePath.login);
+          get_package.Get.toNamed(RoutePath.login);
           showToast(responseData.msg);
           handler.resolve(
             Response(

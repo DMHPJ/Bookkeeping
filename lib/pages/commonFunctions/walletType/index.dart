@@ -4,6 +4,7 @@ import 'package:flutter_application_1/pages/commonFunctions/walletType/model.dar
 import 'package:flutter_application_1/repository/data/wallet_type_list_data.dart';
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,8 @@ class WalletType extends StatefulWidget {
 
 class _WalletTypeState extends State<WalletType>
     with SingleTickerProviderStateMixin {
+  final logger = Logger();
+
   WalletTypeModel walletTypeModel = WalletTypeModel();
   late final TabController _tabController = TabController(
     length: 4,
@@ -35,6 +38,7 @@ class _WalletTypeState extends State<WalletType>
   }
 
   void navigateToAddEdit(WalletTypeItemData data) {
+    logger.i(data);
     Get.toNamed(RoutePath.addEditFund, arguments: data);
   }
 

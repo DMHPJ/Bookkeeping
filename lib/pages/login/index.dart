@@ -4,7 +4,6 @@ import 'package:flutter_application_1/repository/api.dart';
 import 'package:flutter_application_1/repository/appSettings.dart';
 import 'package:flutter_application_1/repository/data/login_data.dart';
 import 'package:flutter_application_1/repository/data/login_response_data.dart';
-import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
@@ -29,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     res.saveLoginResponseData(res);
     logger.i(res.token);
     Global.saveToken(res.token ?? "null");
-    Get.offAllNamed(RoutePath.home);
+    Get.back();
   }
 
   void validForm() {
@@ -44,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return GradientMainBox(
       title: "",
+      showBackButton: false,
       body: Form(
         key: _loginFormKey,
         child: Stack(

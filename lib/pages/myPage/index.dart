@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
+import 'package:flutter_application_1/repository/appSettings.dart';
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,6 +41,10 @@ class _MyPageState extends State<MyPage> {
       default:
         break;
     }
+  }
+
+  void tempCleanLoginInfo() {
+    Global.saveToken("null");
   }
 
   Widget inkWellItem(String pageName, String title) => InkWell(
@@ -166,17 +171,22 @@ class _MyPageState extends State<MyPage> {
                         ],
                       ),
                       Spacer(),
-                      Container(
-                        width: 32.h,
-                        height: 32.w,
-                        padding: EdgeInsets.all(8.r),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFF8F8F8),
-                          borderRadius: BorderRadius.all(Radius.circular(50.r)),
-                        ),
-                        child: GetSvg.url(
-                          "basic/setting",
-                          props: BasicSvgProps(color: Color(0xFF333333)),
+                      InkWell(
+                        onTap: () => tempCleanLoginInfo(), // 添加按钮点击事件
+                        child: Container(
+                          width: 32.h,
+                          height: 32.w,
+                          padding: EdgeInsets.all(8.r),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF8F8F8),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(50.r),
+                            ),
+                          ),
+                          child: GetSvg.url(
+                            "basic/setting",
+                            props: BasicSvgProps(color: Color(0xFF333333)),
+                          ),
                         ),
                       ),
                     ],
@@ -240,7 +250,7 @@ class _MyPageState extends State<MyPage> {
                 children: [inkWellListItem("timedAccounting", "定时记账")],
               ),
             ),
-            Text("唯一识别码")
+            Text("唯一识别码"),
           ],
         ),
       ),

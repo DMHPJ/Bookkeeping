@@ -9,8 +9,8 @@ import 'package:oktoast/oktoast.dart';
 import 'package:get/get.dart';
 
 class EditMainBillType extends StatefulWidget {
-  final BillTypeItemData? argument;
-  const EditMainBillType({super.key, this.argument});
+  final BillTypeItemData? argument = Get.arguments;
+  EditMainBillType({super.key});
 
   @override
   State<StatefulWidget> createState() {

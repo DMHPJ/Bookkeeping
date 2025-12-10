@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class GradientMainBox extends StatelessWidget {
   final String title;
   final Widget body;
-  const GradientMainBox({super.key, required this.title, required this.body});
+  final bool showBackButton;
+  const GradientMainBox({super.key, required this.title, required this.body, this.showBackButton = true});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class GradientMainBox extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         centerTitle: true,
+        automaticallyImplyLeading: showBackButton,
         surfaceTintColor: Color(0xFFF2F8FF),
         backgroundColor: Color(0xFFF2F8FF),
       ),

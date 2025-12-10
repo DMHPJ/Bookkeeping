@@ -24,6 +24,7 @@ class BillTypeListData {
 class BillTypeItemData {
   BillTypeItemData({
     this.id,
+    this.billId,
     this.parentId,
     this.parentName,
     this.parentIcon,
@@ -36,6 +37,7 @@ class BillTypeItemData {
 
   BillTypeItemData.fromJson(dynamic json) {
     id = json['id'];
+    billId = json['billId'];
     parentId = json['parentId'];
     parentName = json['parentName'];
     parentIcon = json['parentIcon'];
@@ -52,6 +54,7 @@ class BillTypeItemData {
     }
   }
   String? id;
+  String? billId;
   String? parentId;
   String? parentName;
   String? parentIcon;
@@ -64,6 +67,7 @@ class BillTypeItemData {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
+    map['billId'] = billId;
     map['parentId'] = parentId;
     map['parentName'] = parentName;
     map['parentIcon'] = parentIcon;
@@ -80,6 +84,6 @@ class BillTypeItemData {
 
   @override
   String toString() {
-    return 'BillTypeItemData{id: $id, parentId: $parentId, parentName: $parentName, parentIcon: $parentIcon, icon: $icon, isIncome: $isIncome, name: $name, createTime: $createTime, children: $children}';
+    return 'BillTypeItemData{id: $id, billId: $billId, parentId: $parentId, parentName: $parentName, parentIcon: $parentIcon, icon: $icon, isIncome: $isIncome, name: $name, createTime: $createTime, children: $children}';
   }
 }

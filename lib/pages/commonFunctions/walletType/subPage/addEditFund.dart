@@ -12,8 +12,8 @@ import 'package:oktoast/oktoast.dart';
 import 'package:get/get.dart';
 
 class AddEditFund extends StatefulWidget {
-  final WalletTypeItemData? argument;
-  const AddEditFund({super.key, this.argument});
+  final WalletTypeItemData? argument = Get.arguments;
+  AddEditFund({super.key});
 
   @override
   State<StatefulWidget> createState() {
