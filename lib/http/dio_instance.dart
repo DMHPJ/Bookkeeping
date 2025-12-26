@@ -48,13 +48,13 @@ class DioInstance {
   // get请求
   Future<Response<BaseModel>> get({
     required String path,
-    Map<String, dynamic>? parma,
+    Map<String, dynamic>? params,
     Options? options,
     CancelToken? cancelToken,
   }) async {
     return await _dio.get(
       path,
-      queryParameters: parma,
+      queryParameters: params,
       options:
           options ??
           Options(
@@ -70,7 +70,7 @@ class DioInstance {
   Future<Response> post({
     required String path,
     Object? data,
-    Map<String, dynamic>? parma,
+    Map<String, dynamic>? params,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
@@ -78,7 +78,7 @@ class DioInstance {
   }) async {
     return await _dio.post(
       path,
-      queryParameters: parma,
+      queryParameters: params,
       data: data,
       options:
           options ??
