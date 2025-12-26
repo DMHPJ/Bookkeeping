@@ -1,51 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/GradientMainBox/gradient_main_box.dart';
-import 'package:flutter_application_1/repository/api.dart';
-import 'package:flutter_application_1/repository/appSettings.dart';
-import 'package:flutter_application_1/repository/data/login_data.dart';
-import 'package:flutter_application_1/repository/data/login_response_data.dart';
+import 'package:flutter_application_1/theme/app_colors.dart';
 import 'package:flutter_application_1/utils/getSvg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logger/logger.dart';
 import 'package:get/get.dart';
+import 'controller.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _LoginPageState();
-  }
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final logger = Logger();
-  final _loginFormKey = GlobalKey<FormState>();
-  LoginData loginForm = LoginData();
-
-  Future toAddUpdateType() async {
-    final LoginResponseData res = await Api.instance.login(loginForm);
-    res.saveLoginResponseData(res);
-    logger.i(res.token);
-    Global.saveToken(res.token ?? "null");
-    Get.back();
-  }
-
-  void validForm() {
-    if (_loginFormKey.currentState!.validate()) {
-      _loginFormKey.currentState!.save();
-      toAddUpdateType();
-      logger.i(loginForm);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+
     return GradientMainBox(
       title: "",
       showBackButton: false,
       body: Form(
-        key: _loginFormKey,
+        key: controller.loginFormKey,
         child: Stack(
           children: [
             Container(
@@ -63,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(99.r)),
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromRGBO(41, 101, 255, 0.06),
+                          color: AppColors.shadowBlue,
                           offset: Offset(0.r, 0.r),
                           spreadRadius: 4.r,
                           blurRadius: 8.r,
@@ -72,15 +44,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: GetSvg.url(
                       "basic/user",
-                      props: BasicSvgProps(color: Color(0xFF999999)),
+                      props: BasicSvgProps(color: AppColors.iconGray),
                     ),
                   ),
                   SizedBox(height: 24.h),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: "账号",
-                      filled: true, // 填充背景颜色
-                      fillColor: Color(0xFFEEEEEE),
+                      filled: true,
+                      fillColor: AppColors.inputFill,
                       contentPadding: EdgeInsets.only(
                         left: 24.w,
                         right: 16.w,
@@ -88,8 +60,8 @@ class _LoginPageState extends State<LoginPage> {
                         bottom: 16.h,
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(99.r), // 设置圆角
-                        borderSide: BorderSide.none, // 去掉边框
+                        borderRadius: BorderRadius.circular(99.r),
+                        borderSide: BorderSide.none,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(99.r),
@@ -106,14 +78,14 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
-                    onSaved: (value) => loginForm.username = value,
+                    onSaved: (value) => controller.loginForm.username = value,
                   ),
                   SizedBox(height: 12.h),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: "密码",
-                      filled: true, // 填充背景颜色
-                      fillColor: Color(0xFFF2F2F2),
+                      filled: true,
+                      fillColor: AppColors.inputFillLight,
                       contentPadding: EdgeInsets.only(
                         left: 24.w,
                         right: 16.w,
@@ -121,8 +93,8 @@ class _LoginPageState extends State<LoginPage> {
                         bottom: 16.h,
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(99.r), // 设置圆角
-                        borderSide: BorderSide.none, // 去掉边框
+                        borderRadius: BorderRadius.circular(99.r),
+                        borderSide: BorderSide.none,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(99.r),
@@ -139,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
-                    onSaved: (value) => loginForm.password = value,
+                    onSaved: (value) => controller.loginForm.password = value,
                   ),
                   SizedBox(height: 8.h),
                   Align(
@@ -148,16 +120,16 @@ class _LoginPageState extends State<LoginPage> {
                       "当账号不存在时，将自动创建账号",
                       style: TextStyle(
                         fontSize: 12.r,
-                        color: Color(0xFF666666),
+                        color: AppColors.textGray,
                       ),
                     ),
                   ),
                   SizedBox(height: 12.h),
                   MaterialButton(
-                    onPressed: validForm,
+                    onPressed: controller.login,
                     minWidth: double.infinity,
                     height: 46.h,
-                    color: Color(0xff2965FF),
+                    color: AppColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(23.r)),
                     ),
@@ -166,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 16.r,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFFFFFFFF),
+                        color: AppColors.white,
                       ),
                     ),
                   ),

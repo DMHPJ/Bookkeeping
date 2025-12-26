@@ -1,54 +1,15 @@
 // 路由注册
-import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/bill/index.dart';
 import 'package:flutter_application_1/pages/bill/subPage/addEditBillchr.dart';
-import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/subPage/editMainBillType.dart';
+import 'package:flutter_application_1/pages/commonFunctions/walletType/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/walletType/subPage/addEditFund.dart';
 import 'package:flutter_application_1/pages/home/index.dart';
 import 'package:flutter_application_1/pages/login/index.dart';
 import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
 import 'package:get/get.dart';
-
-class Routes {
-  static Route<dynamic> generateRoute(final RouteSettings settings) {
-    switch (settings.name) {
-      case RoutePath.login:
-        return pageRoute(LoginPage());
-      case RoutePath.home:
-        return pageRoute(HomePage());
-      case RoutePath.bill:
-        return pageRoute(Bill());
-      case RoutePath.report:
-        return pageRoute(Report());
-      case RoutePath.myPage:
-        return pageRoute(MyPage());
-      case RoutePath.billType:
-        return pageRoute(BillType());
-      case RoutePath.addEditBillType:
-        return pageRoute(EditMainBillType());
-      case RoutePath.walletType:
-        return pageRoute(WalletType());
-      case RoutePath.addEditFund:
-        return pageRoute(AddEditFund());
-      case RoutePath.addEditBillChr:
-        return pageRoute(AddEditBillChr());
-    }
-    return pageRoute(
-      Scaffold(body: SafeArea(child: Center(child: Text('404')))),
-    );
-  }
-
-  static MaterialPageRoute pageRoute(
-    final Widget page, {
-    final bool? fullscreenDialog = false,
-    final bool? maintainState = true,
-    final RouteSettings? settings,
-    final bool? allowSnapshotting = true,
-  }) => MaterialPageRoute(builder: (_) => page);
-}
 
 // 路由树
 class RoutePath {

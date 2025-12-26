@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billTypeListItem/iconIndex.dart';
 import 'package:flutter_application_1/components/calculator/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/model.dart';
-import 'package:flutter_application_1/repository/data/bill_type_list_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:logger/web.dart';
 import 'package:provider/provider.dart';
 
