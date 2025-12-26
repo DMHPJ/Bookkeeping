@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/tabbar/index.dart';
+import 'package:flutter_application_1/pages/main_page.dart';
 import 'package:flutter_application_1/repository/appSettings.dart';
 import 'package:flutter_application_1/route/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
             (materialAppContext, child) => GetMaterialApp(
               title: 'Flutter Demo',
               theme: Global.globalTheme(),
-              // initialRoute: RoutePath.home,
-              home: MyTabBar(menuScreenContext: materialAppContext),
+              home: const MainPage(),
               getPages: AppPages.pages,
             ),
       ),
