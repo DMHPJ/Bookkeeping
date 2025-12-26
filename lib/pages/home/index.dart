@@ -9,6 +9,7 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'package:flutter_application_1/theme/app_colors.dart';
 
 final numberFormat = NumberFormat("##,##0.00", "en_US");
 
@@ -49,18 +50,18 @@ class _HomePageState extends State<HomePage> {
     return ChangeNotifierProvider<HomePageModel>(
       create: (context) => homePageModel,
       child: Scaffold(
-        backgroundColor: Color(0xffF9F9F9),
+        backgroundColor: AppColors.pageBackground,
         appBar: AppBar(
           title: Center(child: Text("首页")),
           toolbarHeight: 42.h,
-          surfaceTintColor: Color(0xFFD7E4FF),
-          backgroundColor: Color(0xFFD7E4FF),
+          surfaceTintColor: AppColors.cardBackgroundBlue,
+          backgroundColor: AppColors.cardBackgroundBlue,
         ),
         body: SafeArea(
           child: EasyRefresh(
             header: const MaterialHeader(
-              backgroundColor: Color(0xFF2965FF),
-              color: Colors.white,
+              backgroundColor: AppColors.primary,
+              color: AppColors.white,
             ),
             onRefresh: getBillMainInfo,
             child: Container(
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 gradient: const LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
+                  colors: [AppColors.gradientStart, AppColors.gradientEnd],
                 ),
               ),
               child: SingleChildScrollView(
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                                         left: 16.w,
                                         right: 16.w,
                                       ),
-                                      color: Color(0xFFD7E4FF),
+                                      color: AppColors.cardBackgroundBlue,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -215,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                                         left: 16.w,
                                         right: 16.w,
                                       ),
-                                      color: Color(0xFFD7E4FF),
+                                      color: AppColors.cardBackgroundBlue,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -335,7 +336,7 @@ class _HomePageState extends State<HomePage> {
                                 onPressed: toAddBillChr,
                                 minWidth: double.infinity,
                                 height: 36.h,
-                                color: Color(0xFFABC3FF),
+                                color: AppColors.buttonBlue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(32.r),
@@ -360,13 +361,13 @@ class _HomePageState extends State<HomePage> {
                                     "近3日账单",
                                     style: TextStyle(
                                       fontSize: 16.r,
-                                      color: Color(0xff333333),
+                                      color: AppColors.textBlack333,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   MaterialButton(
                                     onPressed: () => {},
-                                    color: Color(0xFFABC3FF),
+                                    color: AppColors.buttonBlue,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(30.r),
@@ -375,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       "按时间",
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: AppColors.white,
                                         fontSize: 12.r,
                                       ),
                                     ),
@@ -410,7 +411,7 @@ class _HomePageState extends State<HomePage> {
                                 onPressed: toAddWallet,
                                 minWidth: double.infinity,
                                 height: 36.h,
-                                color: Color(0xFFABC3FF),
+                                color: AppColors.buttonBlue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(32.r),
@@ -440,7 +441,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   MaterialButton(
                                     onPressed: () => {},
-                                    color: Color(0xFFABC3FF),
+                                    color: AppColors.buttonBlue,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(32.r),
@@ -449,7 +450,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       "占位",
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: AppColors.white,
                                         fontSize: 12.r,
                                       ),
                                     ),

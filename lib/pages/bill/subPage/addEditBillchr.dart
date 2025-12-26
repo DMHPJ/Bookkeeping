@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/billTypeListItem/iconIndex.dart';
 import 'package:flutter_application_1/components/calculator/index.dart';
+import 'package:flutter_application_1/components/billInfoSelector/index.dart';
 import 'package:flutter_application_1/pages/commonFunctions/billType/model.dart';
+import 'package:flutter_application_1/theme/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/web.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,7 @@ class _AddEditBillChrState extends State<AddEditBillChr>
     vsync: this,
   );
   BillTypeModel billTypeModel = BillTypeModel();
+  String? _activeParentId;
 
   @override
   void initState() {
@@ -31,6 +34,9 @@ class _AddEditBillChrState extends State<AddEditBillChr>
   }
 
   void handleTabChange(int index) {
+    setState(() {
+      _activeParentId = null; // 切换tab时重置选中态
+    });
     billTypeModel.getBillTypeList(_tabController.index);
   }
 
@@ -54,15 +60,15 @@ class _AddEditBillChrState extends State<AddEditBillChr>
                 labelStyle: TextStyle(
                   fontSize: 14.r,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFFFFFFFF),
+                  color: AppColors.white,
                 ),
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicator: BoxDecoration(
-                  color: Color(0xFF2965FF),
+                  color: AppColors.primary,
                   borderRadius: BorderRadius.all(Radius.circular(99.r)),
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(41, 101, 255, 0.16),
+                      color: AppColors.shadowBlueDark,
                       offset: Offset(0.r, 0.r),
                       spreadRadius: 4.r,
                       blurRadius: 8.r,
@@ -81,15 +87,15 @@ class _AddEditBillChrState extends State<AddEditBillChr>
           ),
           centerTitle: true,
           toolbarHeight: 72.h,
-          surfaceTintColor: Color(0xFFF2F8FF),
-          backgroundColor: Color(0xFFF2F8FF),
+          surfaceTintColor: AppColors.gradientStart,
+          backgroundColor: AppColors.gradientStart,
         ),
         body: Container(
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Color(0xFFF2F8FF), Color(0xFFF9F9F9)],
+              colors: [AppColors.gradientStart, AppColors.gradientEnd],
             ),
           ),
           child: Column(
@@ -102,7 +108,11 @@ class _AddEditBillChrState extends State<AddEditBillChr>
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
+                            padding: EdgeInsets.only(
+                              left: 16.w,
+                              right: 16.w,
+                              top: 16.h,
+                            ),
                             child: Consumer<BillTypeModel>(
                               builder:
                                   (context, value, child) => GridView.builder(
@@ -118,18 +128,40 @@ class _AddEditBillChrState extends State<AddEditBillChr>
                                           childAspectRatio: 0.8857, // 宽高比例
                                         ),
                                     itemBuilder:
-                                        (context, index) =>
-                                            BillTypeListItemIcon(
-                                              data:
-                                                  value.allBillTypeData![index],
-                                            ),
+                                        (
+                                          context,
+                                          index,
+                                        ) => BillTypeListItemIcon(
+                                          data: value.allBillTypeData![index],
+                                          activeParentId: _activeParentId,
+                                          onSelect: (parentId, subItem) {
+                                            setState(() {
+                                              _activeParentId = parentId;
+                                            });
+                                            logger.i(
+                                              "Selected Parent: $parentId, Item: ${subItem.name}",
+                                            );
+                                          },
+                                        ),
                                   ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Calculator(),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          BillInfoSelector(),
+                          SizedBox(height: 8.h),
+                          Calculator(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

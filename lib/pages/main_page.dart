@@ -5,6 +5,7 @@ import 'package:flutter_application_1/pages/myPage/index.dart';
 import 'package:flutter_application_1/pages/report/index.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:flutter_application_1/theme/app_colors.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -46,29 +47,29 @@ class _MainPageState extends State<MainPage> {
           icon: const Icon(Icons.home_outlined),
           title: "主页",
           textStyle: TextStyle(fontSize: 12.r),
-          activeColorPrimary: const Color(0xFF2965FF),
-          inactiveColorPrimary: const Color(0xFF999999),
+          activeColorPrimary: AppColors.primary,
+          inactiveColorPrimary: AppColors.iconGray,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.text_snippet_outlined),
           title: "账单",
           textStyle: TextStyle(fontSize: 12.r),
-          activeColorPrimary: const Color(0xFF2965FF),
-          inactiveColorPrimary: const Color(0xFF999999),
+          activeColorPrimary: AppColors.primary,
+          inactiveColorPrimary: AppColors.iconGray,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.pie_chart_outline),
           title: "报表",
           textStyle: TextStyle(fontSize: 12.r),
-          activeColorPrimary: const Color(0xFF2965FF),
-          inactiveColorPrimary: const Color(0xFF999999),
+          activeColorPrimary: AppColors.primary,
+          inactiveColorPrimary: AppColors.iconGray,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.person),
           title: "我的",
           textStyle: TextStyle(fontSize: 12.r),
-          activeColorPrimary: const Color(0xFF2965FF),
-          inactiveColorPrimary: const Color(0xFF999999),
+          activeColorPrimary: AppColors.primary,
+          inactiveColorPrimary: AppColors.iconGray,
         ),
       ];
 
@@ -89,7 +90,7 @@ class _MainPageState extends State<MainPage> {
         scrollControllers: _scrollControllers,
       ),
       padding: EdgeInsets.only(top: 6.h, bottom: 6.h),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
