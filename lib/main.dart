@@ -6,8 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:get/get.dart';
 
+import 'package:flutter/services.dart';
+
 void main() {
-  Global.init().then((e) => runApp(const MyApp()));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    Global.init().then((e) => runApp(const MyApp()));
+  });
 }
 
 class MyApp extends StatelessWidget {

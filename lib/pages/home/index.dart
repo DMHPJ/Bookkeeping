@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    homePageModel.getBillMainInfo();
   }
 
   Future getBillMainInfo() async {
@@ -57,7 +58,10 @@ class _HomePageState extends State<HomePage> {
         ),
         body: SafeArea(
           child: EasyRefresh(
-            onLoad: getBillMainInfo,
+            header: const MaterialHeader(
+              backgroundColor: Color(0xFF2965FF),
+              color: Colors.white,
+            ),
             onRefresh: getBillMainInfo,
             child: Container(
               decoration: BoxDecoration(
